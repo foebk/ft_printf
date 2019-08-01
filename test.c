@@ -16,7 +16,7 @@ char	*zerozerozero(char *str, size_t i)
 	return (str);
 }
 
-int test(uint64_t a)
+char	*test(uint64_t a)
 {
 	int 		i;
 	uint64_t	b;
@@ -24,27 +24,18 @@ int test(uint64_t a)
 	
 	i = 2;
 	b = a;
-	while (a / 16 != 0)
-	{
+	while ((a / 16 != 0) && (i++))
 		a /= 16;
-		i++;
-	}
 	result = ft_memalloc(sizeof(char *) * i);
 	result[0] = '0';
 	result[1] = 'x';
-	while (i != 2)
+	while (i != 1)
 	{
-		if (b % 16 > 9)
-		{
-			printf("1");
-			result[i] = 'a' + (b % 16 % 10);
-		}
-		else
-			result[i] = '0' + (b % 16);
+		result[i] = (b % 16 > 9) ? 'a' + (b % 16 % 10) : '0' + (b % 16);
 		b /= 16;
 		i--;
 	}
-	printf("%s\n", result);
+	return (result);
 }
 
 int main()
@@ -52,7 +43,6 @@ int main()
     uint64_t a;
     char *b = "hello";
     a = (uint64_t)b;
-    // printf("%p\n", b);
-    // printf("%ld\n", a);
-	test(144);
+    printf("%p\n", a);
+    printf("%s\n", test(a));
 }

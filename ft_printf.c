@@ -2,10 +2,11 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include "libft.h"
+#include <stdint.h>
 
 int		returnvalue = 0;
 
-int		pstr(char *str)
+int		pstr(char *str) // вывод строки
 {
 	if (str == NULL)
 	{
@@ -18,19 +19,45 @@ int		pstr(char *str)
 	return (2);
 }
 
-int		pchar(char letter)
+int		pchar(char letter) // вывод символа
 {
 	write(1, &letter, 1);
 	returnvalue++;
 	return (2);
 }
 
-int		specificator(char *str, va_list vl)
+int		padr(uint64_t a) // вывод адреса
+{
+	int 		i;
+	uint64_t	b;
+	char		*result;
+	
+	i = 2;
+	b = a;
+	while ((a / 16 != 0) && (i++))
+		a /= 16;
+	result = ft_memalloc(sizeof(char *) * i);
+	result[0] = '0';
+	result[1] = 'x';
+	while (i != 1)
+	{
+		result[i] = (b % 16 > 9) ? 'a' + (b % 16 % 10) : '0' + (b % 16);
+		b /= 16;
+		i--;
+	}
+	ft_putstr(result);
+	returnvalue += ft_strlen(result);
+	free(result);
+	return (2);
+}
+
+int		specificator(char *s, va_list vl)
 {
 	int	retspecvalue; // перемещение на n-единиц указателя str;
 
-	(str[1] == 's') ? retspecvalue = pstr(va_arg(vl, char *)) : 0;
-	(str[1] == 'c') ? retspecvalue = pchar(va_arg(vl, int)) : 0;
+	(s[1] == 's') ? retspecvalue = pstr(va_arg(vl, char *)) : 0;
+	(s[1] == 'c') ? retspecvalue = pchar(va_arg(vl, int)) : 0;
+	(s[1] == 'p') ? retspecvalue = padr((uint64_t)(va_arg(vl, void *))) : 0;
 	return (retspecvalue);
 }
 
@@ -69,7 +96,7 @@ int    ft_printf(char *str, ...)
 
 int main()
 {
-	printf("%d\n", printf("aasdasd %p asdasd %ca\n", "aaa", 0));
-	printf("%d\n", ft_printf("aasdasd %s asdasd %ca\n", "aaa", 0));
+	printf("%d\n", printf("aasdasd %p asdasd %ca\n", 4, 0));
+	printf("%d\n", ft_printf("aasdasd %p asdasd %ca\n", 4, 0));
 	return 0;
 }
