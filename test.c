@@ -40,5 +40,5 @@
 
 int main()
 {
-	printf("%d\n", printf("%-20c\n", 'c'));
+	printf("%d\n", write(1, "hello", 10));
 }

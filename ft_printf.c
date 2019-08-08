@@ -81,7 +81,7 @@ int main()
 {
 	// printf("%d\n", printf("aasdasd %p asdasd %ca\n", 4, 0));
 	// printf("%d\n", ft_printf("%-+#p", 3));
-	printf("%d\n", ft_printf("%010c", 'a'));
-	printf("%d\n", printf("%010c", 'a'));
+	printf("%d\n", ft_printf("%-10.3s", "hello"));
+	printf("%d\n", printf("%-10.3s", "hello"));
 	return 0;
 }

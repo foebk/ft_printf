@@ -12,6 +12,7 @@
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+# define PREC st->precision
 
 # include "libft.h"
 # include <unistd.h>
@@ -19,7 +20,7 @@
 # include <stdarg.h>
 # include <stdint.h>
 
-int		ft_printf(char *str, ...);
+int				ft_printf(char *str, ...);
 
 typedef struct	s_printf
 {
@@ -30,6 +31,6 @@ typedef struct	s_printf
 	char			spec;
 }				t_specs;
 
-t_specs	*specificator(char *s, int *ptr);
-int 	printarg(t_specs *st, va_list vl);
+t_specs			*specificator(char *s, int *ptr);
+void			printarg(t_specs *st, va_list vl);
 #endif
