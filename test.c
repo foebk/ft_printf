@@ -40,5 +40,5 @@
 
 int main()
 {
-	printf("%chello", 'c');
+	printf("%d\n", printf("%0wrd\n", 1));
 }

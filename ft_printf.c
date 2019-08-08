@@ -85,6 +85,6 @@ int main()
 {
 	// printf("%d\n", printf("aasdasd %p asdasd %ca\n", 4, 0));
 	// printf("%d\n", ft_printf("%-+#p", 3));
-	ft_printf("%-+0#p", 3);
+	ft_printf("%-+0#15.30p", 3);
 	return 0;
 }

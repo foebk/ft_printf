@@ -14,6 +14,29 @@
 
 extern int		g_returnvalue;
 
+int		readwidth(char *s, int *i, t_specs *st)
+{
+	int		j;
+	int		k;
+	char	*width;
+
+	(*i)--;
+	j = 0;
+	while ((s[++(*i)] >= '0') && (s[*i] <= '9'))
+		j++;
+	if (!(width = ft_memalloc(sizeof(char) * j)))
+		return (-1);
+	k = 0;
+	(*i) = (*i) - j;
+	while (k != j)
+	{
+		width[k] = s[*i];
+		k++;
+		(*i)++;
+	}
+	return (ft_atoi(width));
+}
+
 void	readflags(char *s, int *i, t_specs *st, int flag)
 {
 	if (flag == 1)
@@ -34,10 +57,20 @@ int		specificator(char *s, va_list vl)
 	int			i;
 
 	i = 0;
-	if ((!(st = malloc(sizeof(t_specs)))))
+	if (!(st = malloc(sizeof(t_specs))))
 		return (0);
+	st->width = 0;
 	readflags(s, &i, st, 1);
-	printf("%d\n", i);
-    printf("%hd", st->fl);
+	if (s[i] == '.')
+	{
+		i++;
+		if ((st->precision = readwidth(s, &i, st)) == -1)
+			return (0);
+	}
+	else
+		if ((st->width = readwidth(s, &i, st)) == -1)
+			return (0);
+	printf("%d\n", st->width);
+    printf("%d", st->precision);
 	return (retspecvalue);
 }
