@@ -40,5 +40,5 @@
 
 int main()
 {
-	printf("%d\n", printf("%0wrd\n", 1));
+	printf("%d\n", printf("%^safsa10\n"));
 }

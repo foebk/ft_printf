@@ -14,7 +14,21 @@
 
 extern int		g_returnvalue;
 
-int		readwidth(char *s, int *i, t_specs *st)
+t_specs	*structinit(void)
+{
+	t_specs	*st;
+
+	if (!(st = malloc(sizeof(t_specs))))
+		return (NULL);
+	st->fl = 0;
+	st->width = -1;
+	st->precision = -1;
+	st->size = -1;
+	st->spec = 0;
+	return (st);
+}
+
+int		readwidth(char *s, int *i)
 {
 	int		j;
 	int		k;
@@ -34,43 +48,69 @@ int		readwidth(char *s, int *i, t_specs *st)
 		k++;
 		(*i)++;
 	}
-	return (ft_atoi(width));
+	k = ft_atoi(width);
+	free(width);
+	return (k);
 }
 
-void	readflags(char *s, int *i, t_specs *st, int flag)
+void	readflags(char *s, int *i, t_specs *st, short int flag)
 {
 	if (flag == 1)
-		while ((s[++(*i)] == '-') || (s[(*i)] == '+') || (s[(*i)] == '#') || (s[(*i)] == '0') || (s[(*i)] == ' '))
+		while ((s[++(*i)] == '-') || (s[(*i)] == '+') || (s[(*i)] == '#') ||
+			(s[(*i)] == '0') || (s[(*i)] == ' '))
 		{
 			st->fl += ((s[(*i)] == '0') && (st->fl / 10000 != 1)) ? 10000 : 0;
-			st->fl += ((s[(*i)] == ' ') && (st->fl % 10000 / 1000 != 1)) ? 1000 : 0;
-			st->fl += ((s[(*i)] == '#') && (st->fl % 1000 / 100 != 1)) ? 100 : 0;
+			st->fl += ((s[(*i)] == ' ') && (st->fl % 10000
+				/ 1000 != 1)) ? 1000 : 0;
+			st->fl += ((s[(*i)] == '#') && (st->fl % 1000 /
+				100 != 1)) ? 100 : 0;
 			st->fl += ((s[(*i)] == '-') && (st->fl % 100 / 10 != 1)) ? 10 : 0;
 			st->fl += ((s[(*i)] == '+') && (st->fl % 10 != 1)) ? 1 : 0;
 		}
+	if (flag == 2)
+	{
+		st->size = ((s[*i] == 'l') && (s[(*i) + 1] != 'l')) ? 0 : st->size;
+		st->size = ((s[*i] == 'l') && (s[(*i) + 1] == 'l')) ? 1 : st->size;
+		st->size = ((s[*i] == 'h') && (s[(*i) + 1] != 'h')) ? 2 : st->size;
+		st->size = ((s[*i] == 'h') && (s[(*i) + 1] == 'h')) ? 3 : st->size;
+		st->size = (s[*i] == 'L') ? 4 : st->size;
+		*i = *i + (((st->size == 0) || (st->size % 2 == 0)) ? 1 : 2);
+		*i = *i - ((st->size == -1) ? 2 : 0);
+	}
 }
 
-int		specificator(char *s, va_list vl)
+void	readspec(char *s, int *i, t_specs *st)
 {
-	int			retspecvalue; /* перемещение на n-единиц указателя str; */
+	st->spec = ((s[*i] == 'c') || (s[*i] == 's') || (s[*i] == 'p')
+		|| (s[*i] == 'd') || (s[*i] == 'i') || (s[*i] == 'o')
+			|| (s[*i] == 'u') || (ft_toupper(s[*i]) == 'X') ||
+				(s[*i] == 'f')) ? s[*i] : st->spec;
+}
+
+t_specs	*specificator(char *s, va_list v, int *ptr)
+{
 	t_specs		*st;
 	int			i;
 
 	i = 0;
-	if (!(st = malloc(sizeof(t_specs))))
+	if ((st = structinit()) == NULL)
 		return (0);
-	st->width = 0;
 	readflags(s, &i, st, 1);
+	if ((s[i] != '.') && ((s[i] >= '0') && (s[i] <= '9')))
+		if ((st->width = readwidth(s, &i)) == -1)
+			return (0);
 	if (s[i] == '.')
 	{
-		i++;
-		if ((st->precision = readwidth(s, &i, st)) == -1)
-			return (0);
+		if ((s[++i] >= '0') && (s[i] <= '9'))
+		{
+			if ((st->precision = readwidth(s, &i)) == -1)
+				return (0);
+		}
+		else
+			st->precision = 0;
 	}
-	else
-		if ((st->width = readwidth(s, &i, st)) == -1)
-			return (0);
-	printf("%d\n", st->width);
-    printf("%d", st->precision);
-	return (retspecvalue);
+	readflags(s, &i, st, 2);
+	readspec(s, &i, st);
+	*ptr += i;
+	return (st);
 }

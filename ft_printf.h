@@ -20,7 +20,6 @@
 # include <stdint.h>
 
 int		ft_printf(char *str, ...);
-int		specificator(char *s, va_list vl);
 
 typedef struct	s_printf
 {
@@ -31,4 +30,5 @@ typedef struct	s_printf
 	char			spec;
 }				t_specs;
 
+t_specs	*specificator(char *s, va_list vl, int *ptr);
 #endif
