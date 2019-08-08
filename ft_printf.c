@@ -15,13 +15,6 @@ int		pstr(char *str) /* вывод строки */
 	return (2);
 }
 
-int		pchar(char letter) /* вывод символа  */
-{
-	write(1, &letter, 1);
-	g_returnvalue++;
-	return (2);
-}
-
 int		padr(uint64_t a) /* вывод адреса */
 {
 	int			i;
@@ -62,8 +55,10 @@ char	*ft_printto(char *str)
 int		ft_printf(char *str, ...)
 {
 	va_list	vl;
+	t_specs	*st;
 	int		i;
 
+	i = 0;
 	va_start(vl, str);
 	if (str[0] == '\0')
 		return (0);
@@ -72,10 +67,11 @@ int		ft_printf(char *str, ...)
 		str = ft_printto(str);
 		if (str[0] == '\0') /* если строка закончилась */
 			break ;
-		if (str[0] == '%') /* если встретился спецификатор */
-			i = specificator(str, vl);
-		if (i == 0)
-			return (0);
+		if (str[0] == '%')
+		{
+			st = specificator(str, &i);
+			printarg(st, vl);
+		}
 		str += i;
 	}
 	return (g_returnvalue);
@@ -85,6 +81,7 @@ int main()
 {
 	// printf("%d\n", printf("aasdasd %p asdasd %ca\n", 4, 0));
 	// printf("%d\n", ft_printf("%-+#p", 3));
-	ft_printf("%+-# 030.1000hhx", 3);
+	printf("%d\n", ft_printf("%010c", 'a'));
+	printf("%d\n", printf("%010c", 'a'));
 	return 0;
 }

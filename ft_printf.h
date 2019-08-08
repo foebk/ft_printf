@@ -30,5 +30,6 @@ typedef struct	s_printf
 	char			spec;
 }				t_specs;
 
-t_specs	*specificator(char *s, va_list vl, int *ptr);
+t_specs	*specificator(char *s, int *ptr);
+int 	printarg(t_specs *st, va_list vl);
 #endif

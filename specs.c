@@ -87,7 +87,7 @@ void	readspec(char *s, int *i, t_specs *st)
 				(s[*i] == 'f')) ? s[*i] : st->spec;
 }
 
-t_specs	*specificator(char *s, va_list v, int *ptr)
+t_specs	*specificator(char *s, int *ptr) /* возможные утечки: структура спецификатора */
 {
 	t_specs		*st;
 	int			i;
@@ -111,6 +111,11 @@ t_specs	*specificator(char *s, va_list v, int *ptr)
 	}
 	readflags(s, &i, st, 2);
 	readspec(s, &i, st);
-	*ptr += i;
+	*ptr += i + 1;
+	// printf("%d --- flags\n", st->fl);
+	// printf("%d --- width\n", st->width);
+	// printf("%d --- precision\n", st->precision);
+	// printf("%hd --- size\n", st->size);
+	// printf("%c --- flag\n ------------ \n",st->spec);
 	return (st);
 }
