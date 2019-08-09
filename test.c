@@ -1,5 +1,5 @@
 // #include <stdarg.h>
-// #include <stdio.h>
+#include <stdio.h>
 // #include <stdint.h>
 // #include "libft.h"
 
@@ -40,5 +40,5 @@
 
 int main()
 {
-	printf("%d\n", write(1, "hello", 10));
+	printf("%012p\n", "hello");
 }

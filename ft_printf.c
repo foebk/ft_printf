@@ -74,6 +74,7 @@ int		ft_printf(char *str, ...)
 		}
 		str += i;
 	}
+	free(st);
 	return (g_returnvalue);
 }
 
@@ -81,7 +82,7 @@ int main()
 {
 	// printf("%d\n", printf("aasdasd %p asdasd %ca\n", 4, 0));
 	// printf("%d\n", ft_printf("%-+#p", 3));
-	printf("%d\n", ft_printf("%-10.3s", "hello"));
-	printf("%d\n", printf("%-10.3s", "hello"));
+	printf("| %d - symbol count ft_printf\n", ft_printf("%20.6s abc %10c %-20s aaaaaa %-s", "hello", 'a', "aaa", "aweqwes"));
+	printf("| %d - symbol count\n", printf("%20.6s abc %10c %-20s aaaaaa %-s", "hello", 'a', "aaa", "aweqwes"));
 	return 0;
 }

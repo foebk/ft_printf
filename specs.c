@@ -38,7 +38,7 @@ int		readwidth(char *s, int *i)
 	j = 0;
 	while ((s[++(*i)] >= '0') && (s[*i] <= '9'))
 		j++;
-	if (!(width = ft_memalloc(sizeof(char) * j)))
+	if (!(width = ft_memalloc(sizeof(char) * j + 1)))
 		return (-1);
 	k = 0;
 	(*i) = (*i) - j;
@@ -111,11 +111,11 @@ t_specs	*specificator(char *s, int *ptr) /* возможные утечки: с�
 	}
 	readflags(s, &i, st, 2);
 	readspec(s, &i, st);
-	*ptr += i + 1;
-	printf("%d --- flags\n", st->fl);
-	printf("%d --- width\n", st->width);
-	printf("%d --- precision\n", st->precision);
-	printf("%hd --- size\n", st->size);
-	printf("%c --- flag\n ------------ \n",st->spec);
+	*ptr = i + 1;
+	// printf("%d --- flags\n", st->fl);
+	// printf("%d --- width\n", st->width);
+	// printf("%d --- precision\n", st->precision);
+	// printf("%hd --- size\n", st->size);
+	// printf("%c --- flag\n ------------ \n",st->spec);
 	return (st);
 }
