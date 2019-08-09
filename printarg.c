@@ -14,26 +14,72 @@
 
 extern int	g_returnvalue;
 
-// void	printadr(t_specs *st, uint64_t a, int i)
-// {
-// 	uint64_t	b;
-// 	char		*result;
+char	*gadr(uint64_t a)
+{
+	uint64_t	b;
+	char		*result;
+	int			i;
 
-// 	b = a;
-// 	while ((a / 16 != 0) && (i++))
-// 		a /= 16;
-// 	result = ft_memalloc(sizeof(char *) * i + 1);
-// 	while (i != 1)
-// 	{
-// 		result[i] = (b % 16 > 9) ? 'a' + (b % 16 % 10) : '0' + (b % 16);
-// 		b /= 16;
-// 		i--;
-// 	}
-// 	ft_putstr(result);
-// 	g_returnvalue += ft_strlen(result);
-// 	free(result);
-// 	return (2);
-// }
+	i = 0;
+	b = a;
+	while ((a / 16 != 0) && (++i))
+	{
+		a = a / 16;
+	}
+	result = ft_memalloc(sizeof(char *) * i + 1);
+	while (i != -1)
+	{
+		result[i] = (b % 16 > 9) ? 'a' + (b % 16 % 10) : '0' + (b % 16);
+		b /= 16;
+		i--;
+	}
+	return (result);
+}
+
+void	printadrwominus(t_specs *st, char *adr, int i, char c)
+{
+	if (c == ' ')
+	{
+		while (++i < WID - (int)ft_strlen(adr) - 2)
+			write(1, " ", 1);
+		write(1, "0x", 2);
+		write(1, adr, ft_strlen(adr));
+	}
+	else
+	{
+		write(1, "0x", 2);
+		while (++i < WID - (int)ft_strlen(adr) - 2)
+			write(1, "0", 1);
+		write(1, adr, ft_strlen(adr));
+	}
+	RETV += ((WID > (int)(ft_strlen)(adr)) ? WID : ft_strlen(adr) + 2);
+	free(adr);
+}
+
+void	printadr(t_specs *st, char *adr, int i)
+{
+	char	c;
+
+	c = (((st->fl / 10000) == 1) ? '0' : ' ');
+	if ((st->fl % 100 / 10) == 1)
+	{
+		write(1, "0x", 2);
+		if ((WID == -1) && (RETV += ft_strlen(adr) + 2))
+			write(1, adr, ft_strlen(adr));
+		else if (WID > 0)
+		{
+			write(1, adr, ft_strlen(adr));
+			RETV += ((WID > (int)(ft_strlen)(adr)) ? WID : ft_strlen(adr) + 2);
+			while (++i < WID - (int)ft_strlen(adr) - 2)
+			{
+				write(1, " ", 1);
+			}
+		}
+		free(adr);
+		return ;
+	}
+	printadrwominus(st, adr, i, c);
+}
 
 void	printstr(t_specs *st, char *str, int i)
 {
@@ -43,19 +89,19 @@ void	printstr(t_specs *st, char *str, int i)
 	c = (((st->fl / 10000) == 1) ? '0' : ' ');
 	if ((st->fl % 100 / 10) == 1)
 	{
-		if ((st->width == -1) && (g_returnvalue += PREC))
+		if ((WID == -1) && (RETV += PREC))
 			write(1, str, PREC);
-		else if (st->width > 0)
+		else if (WID > 0)
 		{
 			write(1, str, PREC);
-			g_returnvalue += st->width;
-			while (++i != st->width - PREC)
+			RETV += ((WID > (int)(ft_strlen)(str)) ? WID : PREC);
+			while (++i < WID - PREC)
 				write(1, " ", 1);
 		}
 		return ;
 	}
-	g_returnvalue += ((st->width > PREC) ? st->width : PREC);
-	while (++i < st->width - PREC)
+	RETV += ((WID > PREC) ? WID : PREC);
+	while (++i < WID - PREC)
 		write(1, &c, 1);
 	write(1, str, PREC);
 }
@@ -67,19 +113,19 @@ void	printchar(t_specs *st, int letter, int i)
 	c = (((st->fl / 10000) == 1) ? '0' : ' ');
 	if ((st->fl / 10) == 1)
 	{
-		if ((st->width == -1) && (g_returnvalue += 1))
+		if ((WID == -1) && (RETV += 1))
 			write(1, &letter, 1);
-		else if (st->width > 0)
+		else if (WID > 0)
 		{
 			write(1, &letter, 1);
-			g_returnvalue += st->width;
-			while (++i != st->width - 1)
+			RETV += WID;
+			while (++i != WID - 1)
 				write(1, &c, 1);
 		}
 		return ;
 	}
-	g_returnvalue += ((st->width == -1) ? 1 : st->width);
-	while (++i < st->width - 1)
+	RETV += ((WID == -1) ? 1 : WID);
+	while (++i < WID - 1)
 		write(1, &c, 1);
 	write(1, &letter, 1);
 }
@@ -89,6 +135,7 @@ void	printarg(t_specs *st, va_list vl)
 	int	i;
 
 	i = -1;
-	(st->spec == 'c') ? printchar(st, va_arg(vl, int), i) : 0;
-	(st->spec == 's') ? printstr(st, va_arg(vl, char *), i) : 0;
+	(SPEC == 'c') ? printchar(st, va_arg(vl, int), i) : 0;
+	(SPEC == 's') ? printstr(st, va_arg(vl, char *), i) : 0;
+	(SPEC == 'p') ? printadr(st, gadr((uint64_t)(va_arg(vl, void *))), i) : 0;
 }

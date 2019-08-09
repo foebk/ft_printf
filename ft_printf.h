@@ -13,7 +13,9 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # define PREC st->precision
-
+# define SPEC st->spec
+# define WID st->width
+# define RETV g_returnvalue
 # include "libft.h"
 # include <stdio.h>
 # include <stdarg.h>
