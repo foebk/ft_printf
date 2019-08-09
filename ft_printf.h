@@ -12,10 +12,12 @@
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+
 # define PREC st->precision
 # define SPEC st->spec
 # define WID st->width
 # define RETV g_returnvalue
+
 # include "libft.h"
 # include <stdio.h>
 # include <stdarg.h>
@@ -32,6 +34,13 @@ typedef struct	s_printf
 	char			spec;
 }				t_specs;
 
+void			printstr(t_specs *st, char *str, int i);
+void			printadr(t_specs *st, char *adr, int i);
+char			*gadr(uint64_t a);
+void			printchar(t_specs *st, int letter, int i);
+
+void 			printint(t_specs *st, void *a, int i);
+
 t_specs			*specificator(char *s, int *ptr);
-void			printarg(t_specs *st, va_list vl);
+
 #endif

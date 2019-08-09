@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printarg.c                                         :+:      :+:    :+:   */
+/*   printtxt.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ction <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -128,14 +128,4 @@ void	printchar(t_specs *st, int letter, int i)
 	while (++i < WID - 1)
 		write(1, &c, 1);
 	write(1, &letter, 1);
-}
-
-void	printarg(t_specs *st, va_list vl)
-{
-	int	i;
-
-	i = -1;
-	(SPEC == 'c') ? printchar(st, va_arg(vl, int), i) : 0;
-	(SPEC == 's') ? printstr(st, va_arg(vl, char *), i) : 0;
-	(SPEC == 'p') ? printadr(st, gadr((uint64_t)(va_arg(vl, void *))), i) : 0;
 }

@@ -87,7 +87,7 @@ void	readspec(char *s, int *i, t_specs *st)
 				(s[*i] == 'f')) ? s[*i] : st->spec;
 }
 
-t_specs	*specificator(char *s, int *ptr) /* возможные утечки: структура спецификатора */
+t_specs	*specificator(char *s, int *ptr)
 {
 	t_specs		*st;
 	int			i;
