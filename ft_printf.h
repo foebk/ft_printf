@@ -16,6 +16,7 @@
 # define PREC st->precision
 # define SPEC st->spec
 # define WID st->width
+# define SIZE st->size
 # define RETV g_returnvalue
 
 # include "libft.h"
@@ -27,7 +28,7 @@ int				ft_printf(char *str, ...);
 
 typedef struct	s_printf
 {
-	short int		fl; /* 2^ (0 = '+' 1 = '-' 2 = '#' 3 = ' ' 4 = '0') */
+	short int		fl; /* 2^ (1 = '+' 10 = '-' 100 = '#' 1000 = ' ' 10000 = '0') */
 	int				width;
 	int				precision;
 	short int		size; /* 0 = 'l' 1 = 'll' 2 = 'h' 3 = 'hh' 4 = 'L' */

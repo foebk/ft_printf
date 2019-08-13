@@ -112,10 +112,10 @@ t_specs	*specificator(char *s, int *ptr)
 	readflags(s, &i, st, 2);
 	readspec(s, &i, st);
 	*ptr = i + 1;
-	// printf("%d --- flags\n", st->fl);
-	// printf("%d --- width\n", st->width);
-	// printf("%d --- precision\n", st->precision);
-	// printf("%hd --- size\n", st->size);
-	// printf("%c --- flag\n ------------ \n",st->spec);
+	printf("%d --- flags\n", st->fl);
+	printf("%d --- width\n", st->width);
+	printf("%d --- precision\n", st->precision);
+	printf("%hd --- size\n", st->size);
+	printf("%c --- flag\n ------------ \n",st->spec);
 	return (st);
 }

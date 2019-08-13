@@ -85,7 +85,7 @@ void	printstr(t_specs *st, char *str, int i)
 {
 	char	c;
 
-	PREC = ((PREC > ft_strlen(str)) ? ft_strlen(str) : PREC);
+	PREC = ((PREC > (int)ft_strlen(str)) ? ft_strlen(str) : PREC);
 	c = (((st->fl / 10000) == 1) ? '0' : ' ');
 	if ((st->fl % 100 / 10) == 1)
 	{

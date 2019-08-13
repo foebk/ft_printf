@@ -66,7 +66,9 @@ int		ft_printf(char *str, ...)
 
 int	main()
 {
-	printf("| %d - symbol count ft_printf\n", ft_printf("%d", 123241));
-	printf("| %d - symbol count\n", printf("%+100.10d", 10));
+	long long int a = -123123123123;
+	char    *str = "%-10.3lld";
+	printf("| %d - symbol count ft_printf\n", ft_printf(str, a));
+	printf("| %d - symbol count\n", printf(str, a));
 	return 0;
 }
