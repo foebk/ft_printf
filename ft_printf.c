@@ -23,6 +23,7 @@ void	printarg(t_specs *st, va_list vl)
 	(SPEC == 's') ? printstr(st, va_arg(vl, char *), i) : 0;
 	(SPEC == 'p') ? printadr(st, gadr((uint64_t)(va_arg(vl, void *))), i) : 0;
 	((SPEC == 'd') || (SPEC == 'i')) ? printint(st, va_arg(vl, void *), i) : 0;
+	(SPEC == 'o') ? printoct(st, va_arg(vl, void *), i) : 0;
 }
 
 char	*ft_printto(char *str)
@@ -66,8 +67,8 @@ int		ft_printf(char *str, ...)
 
 int	main()
 {
-	long long int a = 12;
-	char    *str = "%20.43lld";
+	long long int a = -127;
+	char    *str = "%#020llo";
 	printf("| %d - symbol count ft_printf\n", ft_printf(str, a));
 	printf("| %d - symbol count\n", printf(str, a));
 	return 0;
