@@ -40,7 +40,7 @@ void			printadr(t_specs *st, char *adr, int i);
 char			*gadr(uint64_t a);
 void			printchar(t_specs *st, int letter, int i);
 
-void 			printint(t_specs *st, void *a, int i);
+int 			printint(t_specs *st, void *a, int i);
 
 t_specs			*specificator(char *s, int *ptr);
 

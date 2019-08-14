@@ -32,7 +32,7 @@ static char		*ft_zeroatoi(void)
 	return (dest);
 }
 
-static int		ft_intlen(int n)
+static int		ft_intlen(long long int n)
 {
 	int	i;
 
