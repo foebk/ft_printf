@@ -53,16 +53,31 @@ void				printwminus(t_specs *st, long long int b, int i, char *ret)
 	RETV += ((WID > PREC) ? WID : PREC);
 }
 
-// void				printintwominus(t_specs *st, long long int b, int i)
-// {
-// 	if (st->fl / 10000 == 1)
-// 	{
-// 		if (PREC > WID)
-// 			((st->fl % 10 == 1) || (st->fl % 10000 / 1000 == 1) || (b < 0)) ?
-// 				paramsproc(0, st, 2, b) : 0;
-// 		ft_putstr(ft_itoa(b) + ((b < 0) ? 1 : 0));
-// 	}
-// }
+void				printwominus(t_specs *st, long long int b, int i, char *ret)
+{
+	char c;
+
+	i = 0;
+	c = (((st->fl / 10000 == 1) && (PREC == -1)) ? '0' : ' ');
+	if ((PREC >= WID) || (c == '0'))
+	{
+		((st->fl % 10 == 1) || (st->fl % 10000 / 1000 == 1) || (b < 0)) ?
+			paramsproc(0, st, 2, b) : 0;
+		i--;
+	}
+	(b < 0) ? 0 : i--;
+	while (++i < WID - (PREC > (int)ft_strlen(ret) ? PREC : (int)ft_strlen(ret)))
+		write(1, &c, 1);
+	if ((PREC < WID) && (c != '0'))
+		((st->fl % 10 == 1) || (st->fl % 10000 / 1000 == 1) || (b < 0)) ?
+			paramsproc(0, st, 2, b) : 0;
+	i = -1;
+	while (++i < PREC - (int)ft_strlen(ret))
+		write(1, "0", 1);
+	ft_putstr(ret);
+	PREC = (PREC > (int)ft_strlen(ret) ? PREC : (int)ft_strlen(ret));
+	RETV += ((WID > PREC) ? WID : PREC);
+}
 
 int					printint(t_specs *st, void *a, int i)
 {
@@ -78,8 +93,8 @@ int					printint(t_specs *st, void *a, int i)
 	ret = (b < 0) ? ret + 1 : ret;
 	if (st->fl % 100 / 10 == 1)
 		printwminus(st, b, i, ret);
-	// else
-	// 	printintwominus(st, b, -1);
+	else
+		printwominus(st, b, i, ret);
 	ft_strdel(&ptr);
 	return (1);
 }
