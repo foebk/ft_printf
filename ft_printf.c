@@ -67,8 +67,8 @@ int		ft_printf(char *str, ...)
 
 int	main()
 {
-	long long int a = -127;
-	char    *str = "%#020llo";
+	char *a = "4L;ASFNL;SDGH";
+	char    *str = "%020.10s";
 	printf("| %d - symbol count ft_printf\n", ft_printf(str, a));
 	printf("| %d - symbol count\n", printf(str, a));
 	return 0;

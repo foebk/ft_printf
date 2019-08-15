@@ -22,21 +22,20 @@ char	*ft_itoa_base(long long int value, int base)
 	i = 0;
 	if (base > 16)
 		return (NULL);
-	while (value / base != 0)
-	{
+	while ((value / base != 0) && ++i)
 		value /= base;
-		i++;
-	}
 	((base == 10) && (val < 0)) ? i++ : 0;
 	if ((res = ft_memalloc(sizeof(i + 2))) == 0)
 		return (NULL);
 	((base == 10) && (val < 0)) ? res[i] = '-' : 0;
 	while (val / base)
 	{
-		res[i] = (val % base > 9 ? val % base % 10 + 97 : val % base + '0');
+		res[i] = (val % base > 9 ? ft_abs(val % base % 10) +
+			97 : ft_abs(val % base) + '0');
 		val /= base;
 		i--;
 	}
-	res[i] = (val % base > 9 ? val % base % 10 + 97 : val % base + '0');
+	res[i] = (val % base > 9 ? ft_abs(val % base % 10)
+		+ 97 : ft_abs(val % base) + '0');
 	return (res);
 }
