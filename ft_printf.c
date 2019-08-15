@@ -67,8 +67,8 @@ int		ft_printf(char *str, ...)
 
 int	main()
 {
-	char *a = "a";
-	char    *str = "%-10.25p";
+	int		a = 214353465;
+	char    *str = "%-030.35p";
 	printf("| %d - symbol count ft_printf\n", ft_printf(str, a));
 	printf("| %d - symbol count\n", printf(str, a));
 	return 0;

@@ -38,21 +38,15 @@ char	*gadr(uint64_t a)
 
 void	printadrwominus(t_specs *st, char *adr, int i, char c)
 {
-	if (c == ' ')
-	{
-		while (++i < WID - (int)ft_strlen(adr) - 2)
-			write(1, " ", 1);
-		write(1, "0x", 2);
-		write(1, adr, ft_strlen(adr));
-	}
-	else
-	{
-		write(1, "0x", 2);
-		while (++i < WID - (int)ft_strlen(adr) - 2)
-			write(1, " ", 1);
-		write(1, adr, ft_strlen(adr));
-	}
-	RETV += ((WID > (int)(ft_strlen)(adr)) ? WID : ft_strlen(adr) + 2);
+	PREC = (PREC > (int)ft_strlen(adr) ? PREC : (int)ft_strlen(adr));
+	while (++i < WID - PREC - 2)
+		write(1, " ", 1);
+	write(1, "0x", 2);
+	i = -1;
+	while (++i < PREC - (int)ft_strlen(adr))
+		write(1, "0", 1);
+	ft_putstr(adr);
+	RETV += ((WID > PREC ? WID : PREC + 2));
 	free(adr);
 }
 
@@ -60,7 +54,6 @@ void	printadr(t_specs *st, char *adr, int i)
 {
 	char	c;
 
-	c = (((st->fl / 10000) == 1) ? '0' : ' ');
 	if ((st->fl % 100 / 10) == 1)
 	{
 		write(1, "0x", 2);
@@ -72,6 +65,7 @@ void	printadr(t_specs *st, char *adr, int i)
 		while (++i < WID - PREC - 2)
 			write(1, " ", 1);
 		RETV += ((WID > PREC ? WID : PREC + 2));
+		free(adr);
 		return ;
 	}
 	printadrwominus(st, adr, i, c);
