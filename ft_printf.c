@@ -67,9 +67,9 @@ int		ft_printf(char *str, ...)
 
 // int	main()
 // {
-// 	int		a = 214353465;
+// 	char	*a = "hello";
 // 	char    *str = "%-030.35p";
-// 	printf("| %d - symbol count ft_printf\n", ft_printf(str, a));
-// 	printf("| %d - symbol count\n", printf(str, a));
+// 	printf("| %d - symbol count ft_printf\n", ft_printf("@moulitest: %.d %.0d", 0, 0));
+// 	printf("| %d - symbol count\n", printf("@moulitest: %.d %.0d", 0, 0));
 // 	return 0;
 // }

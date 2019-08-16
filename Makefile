@@ -29,8 +29,7 @@ $(NAME): $(LIBFT)
 	@echo "LIBFT COMPILATED"
 	@cc -c $(SRC) -I./libft/includes -I.
 	@echo "OBJECT FILES COMPILATED"
-	@cp $(LIBFT) ../$(NAME)
-	@mv $(LIBFT) $(NAME)
+	@cp $(LIBFT) ./$(NAME)
 	@ar -rc $(NAME) $(OBJ)
 	@echo "DONE. HAVE FUN"
 

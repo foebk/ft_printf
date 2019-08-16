@@ -75,15 +75,18 @@ void	printstr(t_specs *st, char *str, int i)
 {
 	char	c;
 
-	PREC = ((PREC > (int)ft_strlen(str)) ? (int)ft_strlen(str) : PREC);
+	if (str == NULL)
+		str = "(null)";
+	PREC = ((PREC > (int)ft_strlen(str) && (PREC > 0)) ?
+		(int)ft_strlen(str) : PREC);
+	PREC = (PREC < 0) ? (int)ft_strlen(str) : PREC;
 	c = (((st->fl / 10000) == 1) ? '0' : ' ');
 	if ((st->fl % 100 / 10) == 1)
 	{
 		if ((WID == -1) && (RETV += PREC))
 			write(1, str, PREC);
-		else if (WID > 0)
+		else if ((WID > 0) && (i = -1))
 		{
-			i = -1;
 			write(1, str, PREC);
 			RETV += (WID > PREC ? WID : PREC);
 			while (++i < WID - PREC)

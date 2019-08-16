@@ -66,7 +66,8 @@ void				printwominus(t_specs *st, long long int b, int i, char *ret)
 		i--;
 	}
 	(b < 0) ? 0 : i--;
-	while (++i < WID - (PREC > (int)ft_strlen(ret) ? PREC : (int)ft_strlen(ret)))
+	while (++i < WID - (PREC > (int)ft_strlen(ret) ? PREC :
+		(int)ft_strlen(ret)))
 		write(1, &c, 1);
 	if ((PREC < WID) && (c != '0'))
 		((st->fl % 10 == 1) || (st->fl % 10000 / 1000 == 1) || (b < 0)) ?
