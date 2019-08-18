@@ -35,13 +35,17 @@ typedef struct	s_printf
 	char			spec;
 }				t_specs;
 
-void			printstr(t_specs *st, char *str, int i);
-void			printadr(t_specs *st, char *adr, int i);
-char			*gadr(uint64_t a);
-void			printchar(t_specs *st, int letter, int i);
+void				printstr(t_specs *st, char *str, int i);
+void				printadr(t_specs *st, char *adr, int i);
+char				*gadr(uint64_t a);
+void				printchar(t_specs *st, int letter, int i);
 
-int 			printint(t_specs *st, void *a, int i);
-int				printoct(t_specs *st, void *a, int i);
+int 				printint(t_specs *st, void *a, int i);
+void				widthint(t_specs *st, long long int b, int i, char *r);
+void				zeroint(t_specs *st, long long int b, int i, char *r);
+long long int		paramsproc(void *a, t_specs *st, int flag, long long int d);
+int					printoct(t_specs *st, void *a, int i);
+
 
 t_specs			*specificator(char *s, int *ptr);
 

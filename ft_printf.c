@@ -23,7 +23,7 @@ void	printarg(t_specs *st, va_list vl)
 	(SPEC == 's') ? printstr(st, va_arg(vl, char *), i) : 0;
 	(SPEC == 'p') ? printadr(st, gadr((uint64_t)(va_arg(vl, void *))), i) : 0;
 	((SPEC == 'd') || (SPEC == 'i')) ? printint(st, va_arg(vl, void *), i) : 0;
-	(SPEC == 'o') ? printoct(st, va_arg(vl, void *), i) : 0;
+	// (SPEC == 'o') ? printoct(st, va_arg(vl, void *), i) : 0;
 }
 
 char	*ft_printto(char *str)
@@ -65,11 +65,11 @@ int		ft_printf(char *str, ...)
 	return (RETV);
 }
 
-// int	main()
-// {
-// 	char	*a = "hello";
-// 	char    *str = "%-030.35p";
-// 	printf("| %d - symbol count ft_printf\n", ft_printf("@moulitest: %.d %.0d", 0, 0));
-// 	printf("| %d - symbol count\n", printf("@moulitest: %.d %.0d", 0, 0));
-// 	return 0;
-// }
+int	main()
+{
+	char	*a = "hello";
+	char    *str = "%-030.35p";
+	printf("| %d - symbol count ft_printf\n", ft_printf("%-.16i", 1661275917));
+	printf("| %d - symbol count\n", printf("%-.16i", 1661275917));
+	return 0;
+}
