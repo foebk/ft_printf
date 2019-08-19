@@ -67,11 +67,11 @@ int		ft_printf(char *str, ...)
 	return (RETV);
 }
 
-int	main()
-{
-	char	*a = "hello";
-	char    *str = "%10.3p";
-	printf("| %d - symbol count ft_printf\n", ft_printf("%#o", 0));
-	printf("| %d - symbol count\n", printf("%#o", 0));
-	return 0;
-}
+// int	main()
+// {
+// 	char	*a = "hello";
+// 	char    *str = "%10.3p";
+// 	printf("| %d - symbol count ft_printf\n", ft_printf("%o", 0));
+// 	printf("| %d - symbol count\n", printf("%o", 0));
+// 	return 0;
+// }

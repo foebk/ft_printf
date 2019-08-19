@@ -79,10 +79,10 @@ int					printoct(t_specs *st, void *a, int i)
 	b = (SIZE != -1 ? paramsprococt(a, st) : (unsigned int)a);
 	if (!(ret = ft_itoa_base(b, 8)))
 		return (-1);
-	else if ((PREC == 0) && ((int)a == 0))
+	if ((PREC <= 0) && ((int)a == 0))
 	{
 		i = -1;
-		zeroprecision(st, i);
+		zeroprecision(st, 0, "0");
 	}
 	else if (st->fl % 100 / 10 == 1)
 		printoctminus(st, b, i, ret);
