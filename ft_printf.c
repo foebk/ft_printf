@@ -23,7 +23,8 @@ void	printarg(t_specs *st, va_list vl)
 	(SPEC == 's') ? printstr(st, va_arg(vl, char *), i) : 0;
 	(SPEC == 'p') ? printadr(st, gadr((uint64_t)(va_arg(vl, void *))), i) : 0;
 	((ft_tolower(SPEC) == 'd') || (SPEC == 'i')) ? printint(st, va_arg(vl, void *), i) : 0;
-	(SPEC == 'o') ? printoct(st, va_arg(vl, void *), i) : 0;
+	(ft_tolower(SPEC) == 'o') ? printoct(st, va_arg(vl, void *), 0) : 0;
+	(SPEC == '%') ? printpercent(st, 0) : 0;
 }
 
 char	*ft_printto(char *str)
@@ -66,12 +67,11 @@ int		ft_printf(char *str, ...)
 	return (RETV);
 }
 
-
 int	main()
 {
 	char	*a = "hello";
-	char    *str = "%-030.35p";
-	printf("| %d - symbol count ft_printf\n", ft_printf("%-#10.5lo", 333));
-	printf("| %d - symbol count\n", printf("%-#10.5lo", 333));
+	char    *str = "%10.3p";
+	printf("| %d - symbol count ft_printf\n", ft_printf("%#o", 0));
+	printf("| %d - symbol count\n", printf("%#o", 0));
 	return 0;
 }

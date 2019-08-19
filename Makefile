@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = libftprintf.a
-SRC = ft_printf.c printint.c printoct.c printtxt.c specs.c printint2.c
+SRC = ft_printf.c printint.c printoct.c printtxt.c specs.c printint2.c printoct2.c printpercent.c
 OBJ = $(SRC:.c=.o)
 LIBFT = libft/libft.a
 HEADER = -I. -I./libft/includes

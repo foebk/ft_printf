@@ -82,9 +82,9 @@ void	readflags(char *s, int *i, t_specs *st, short int flag)
 void	readspec(char *s, int *i, t_specs *st)
 {
 	st->spec = ((s[*i] == 'c') || (s[*i] == 's') || (s[*i] == 'p') ||
-	(ft_tolower(s[*i]) == 'd') || (s[*i] == 'i') || (s[*i] == 'o') ||
-	(s[*i] == 'u') || (ft_toupper(s[*i]) == 'X') || (s[*i] == 'f')) ?
-	s[*i] : st->spec;
+	(ft_tolower(s[*i]) == 'd') || (s[*i] == 'i') || ft_tolower((s[*i]) == 'o')
+	|| (s[*i] == 'u') || (ft_toupper(s[*i]) == 'X') || (s[*i] == 'f')) ||
+	(s[*i] == '%') ? s[*i] : st->spec;
 }
 
 t_specs	*specificator(char *s, int *ptr)

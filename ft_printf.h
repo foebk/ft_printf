@@ -45,9 +45,13 @@ void				widthint(t_specs *st, long long int b, int i, char *r);
 void				zeroint(t_specs *st, long long int b, int i, char *r);
 long long int		paramsproc(void *a, t_specs *st, int flag, long long int d);
 int					printoct(t_specs *st, void *a, int i);
-void				printoctminus(t_specs *st, long long int b, int i, char *r);
+void				zeroprecision(t_specs *st, int i);
+void				zerooct(t_specs *st, long long int b, int i, char *r);
+void				widthoct(t_specs *st, long long int b, int i, char *r);
+
+void				printpercent(t_specs *st, int i);
 
 
-t_specs			*specificator(char *s, int *ptr);
+t_specs				*specificator(char *s, int *ptr);
 
 #endif

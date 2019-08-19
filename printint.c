@@ -55,6 +55,8 @@ void				zeroprecision(t_specs *st, int i)
 	if (st->fl % 100 / 10 != 1)
 		(st->fl % 10 == 1) || (st->fl % 10000 / 1000 == 1) ?
 			paramsproc(0, st, 2, 0) : 0;
+	if ((st->fl % 1000 / 100 == 1) && (write(1, "0", 1)))
+		WID = (WID < 0) ? 1 : WID;
 	RETV += WID < 0 ? 0 : WID;
 }
 
