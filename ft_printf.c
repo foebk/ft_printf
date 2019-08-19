@@ -45,6 +45,7 @@ int		ft_printf(char *str, ...)
 	int		i;
 
 	i = 0;
+	st = NULL;
 	va_start(vl, str);
 	if (str[0] == '\0')
 		return (0);
