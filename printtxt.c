@@ -23,10 +23,8 @@ char	*gadr(uint64_t a)
 	i = 0;
 	b = a;
 	while ((a / 16 != 0) && (++i))
-	{
 		a = a / 16;
-	}
-	result = ft_memalloc(sizeof(char *) * i + 1);
+	result = ft_memalloc(sizeof(char *) * i + 2);
 	while (i != -1)
 	{
 		result[i] = (b % 16 > 9) ? 'a' + (b % 16 % 10) : '0' + (b % 16);

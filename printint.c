@@ -25,6 +25,8 @@ long long int		paramsproc(void *a, t_specs *st, int flag, long long int d)
 		b = ((SIZE == 1) ? (long long int)a : b);
 		b = ((SIZE == 2) ? (short int)a : b);
 		b = ((SIZE == 3) ? (char)a : b);
+		b = ((unsigned long int)a == -9223372036854775808UL ?
+			(unsigned long int)a : b);
 		return (b);
 	}
 	if ((flag == 2) && (WID--))
@@ -100,7 +102,6 @@ int					printint(t_specs *st, void *a, int i)
 	char			*ptr;
 
 	b = 0;
-	
 	b = (SIZE != -1 ? paramsproc(a, st, 1, 0) : (int)a);
 	if ((ret = ft_itoa(b)) == 0)
 		return (-1);

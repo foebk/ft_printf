@@ -47,24 +47,26 @@ static int		ft_intlen(long long int n)
 
 char			*ft_itoa(long long int n)
 {
-	int				i;
-	long long int	num;
-	char			*dest;
+	int					i;
+	long long int		num;
+	char				*dest;
 
 	num = n;
+	if ((unsigned long int)n == -9223372036854775808UL)
+	{
+		if (!(dest = malloc(sizeof(char) * 21)))
+			return (NULL);
+		dest = ft_strdup("-9223372036854775808");
+		return (dest);
+	}
 	if (num == 0)
 		return (ft_zeroatoi());
 	i = ft_intlen(num);
-	if (num < 0)
-		i++;
-	dest = (char *)malloc(sizeof(char) * (i + 2));
-	if (dest == NULL)
+	num < 0 ? i++ : 0;
+	if (!(dest = malloc(sizeof(char) * (i + 2))))
 		return (NULL);
-	if (num < 0)
-	{
-		dest[0] = '-';
+	if ((num < 0) && (dest[0] = '-'))
 		num = num * -1;
-	}
 	i++;
 	dest[i] = '\0';
 	i--;
