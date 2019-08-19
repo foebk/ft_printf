@@ -45,6 +45,7 @@ void				widthint(t_specs *st, long long int b, int i, char *r);
 void				zeroint(t_specs *st, long long int b, int i, char *r);
 long long int		paramsproc(void *a, t_specs *st, int flag, long long int d);
 int					printoct(t_specs *st, void *a, int i);
+void				printoctminus(t_specs *st, long long int b, int i, char *r);
 
 
 t_specs			*specificator(char *s, int *ptr);
