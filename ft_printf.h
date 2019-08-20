@@ -45,7 +45,6 @@ void				widthint(t_specs *st, long long int b, int i, char *r);
 void				zeroint(t_specs *st, long long int b, int i, char *r);
 long long int		paramsproc(void *a, t_specs *st, int flag, long long int d);
 int					printoct(t_specs *st, void *a, int i);
-void				zeroprecision(t_specs *st, int i, char *c);
 void				zerooct(t_specs *st, long long int b, int i, char *r);
 void				widthoct(t_specs *st, long long int b, int i, char *r);
 

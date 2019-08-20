@@ -18,12 +18,12 @@ void	zerooct(t_specs *st, long long int b, int i, char *r)
 	int		sh;
 
 	sh = 1;
-	(st->fl % 1000 / 100 != 1) ? sh = 0: 0;
+	(st->fl % 1000 / 100 != 1) ? sh = 0 : 0;
 	(st->fl % 1000 / 100 == 1) ? write(1, "0", 1) : i--;
 	while (++i < WID - (PREC > (int)ft_strlen(r) ? PREC : (int)ft_strlen(r)))
 		write(1, "0", 1);
 	ft_putstr(r);
-	WID = (WID > (int)ft_strlen(r) + sh) ? WID : (int)ft_strlen(r) + sh; 
+	WID = (WID > (int)ft_strlen(r) + sh) ? WID : (int)ft_strlen(r) + sh;
 	return ;
 }
 
@@ -32,7 +32,7 @@ void	widthoct(t_specs *st, long long int b, int i, char *r)
 	int		sh;
 
 	sh = 1;
-	(st->fl % 1000 / 100 != 1) ? sh = 0: 0;
+	(st->fl % 1000 / 100 != 1) ? sh = 0 : 0;
 	PREC = (PREC > (int)ft_strlen(r) + sh) ? PREC : (int)ft_strlen(r) + sh;
 	while (++i <= WID - PREC)
 		write(1, " ", 1);

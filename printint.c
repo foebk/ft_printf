@@ -41,7 +41,7 @@ long long int		paramsproc(void *a, t_specs *st, int flag, long long int d)
 	return (0);
 }
 
-void				zeroprecision(t_specs *st, int i, char *c)
+void				zeroprecision(t_specs *st, int i)
 {
 	(st->fl % 10 == 1) || (st->fl % 10000 / 1000 == 1) ? i++ : 0;
 	if (st->fl % 100 / 10 == 1)
@@ -108,7 +108,7 @@ int					printint(t_specs *st, void *a, int i)
 	ptr = ret;
 	ret = (b < 0) ? ret + 1 : ret;
 	if ((PREC == 0 && ((int)a == 0)))
-		zeroprecision(st, i, "");
+		zeroprecision(st, i);
 	else if (st->fl % 100 / 10 == 1)
 		printwminus(st, b, i, ret);
 	else
