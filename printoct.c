@@ -60,7 +60,6 @@ void				printoctminus(t_specs *st, long long int b, int i, char *r)
 	sh = 1;
 	(st->fl % 1000 / 100 != 1) ? sh = 0 : 0;
 	PREC = (int)ft_strlen(r) > PREC ? (int)ft_strlen(r) : PREC;
-	(st->fl % 10000 / 1000 == 1) ? PREC = 0 : 0;
 	(st->fl % 1000 / 100 == 1) ? write(1, "0", 1) : 0;
 	while (i++ < PREC - (int)ft_strlen(r) - sh)
 		write(1, "0", 1);
@@ -102,12 +101,11 @@ int					printoct(t_specs *st, void *a, int i)
 {
 	unsigned long long int	b;
 	char					*ret;
-	char					*ptr;
 
 	b = (SIZE != -1 ? paramsprococt(a, st) : (unsigned int)a);
 	if (!(ret = ft_itoa_base(b, 8)))
 		return (-1);
-	if ((PREC <= 0) && ((int)a == 0))
+	if ((PREC <= 0) && ((unsigned long long)a == 0))
 		zeroprecisionoct(st, 0);
 	else if (st->fl % 100 / 10 == 1)
 		printoctminus(st, b, i, ret);
