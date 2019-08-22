@@ -49,6 +49,7 @@ int		ft_printf(char *str, ...)
 
 	i = 0;
 	st = NULL;
+	RETV = 0;
 	va_start(vl, str);
 	if (str[0] == '\0')
 		return (0);
@@ -64,8 +65,7 @@ int		ft_printf(char *str, ...)
 		}
 		str += i;
 	}
-	if (st != NULL)
-		free(st);
+	(st != NULL) ? free(st) : 0;
 	return (RETV);
 }
 
@@ -73,8 +73,8 @@ int	main()
 {
 	char	*a = "hello";
 	char    *str = "%10.3p";
-	
-	printf("| %d - symbol count ft_printf\n", ft_printf("%llo", -412412412412));
-	printf("| %d - symbol count\n", printf("%llo", -4124124124124));
+
+	printf("| %d - symbol count ft_printf\n", ft_printf("%.5p, %.p", 0, 0));
+	printf("| %d - symbol count\n", printf("%.5p, %.p", 0, 0));
 	return 0;
 }

@@ -18,6 +18,7 @@ unsigned long long	paramsprococt(void *a, t_specs *st)
 {
 	unsigned long long int	b;
 
+	b = 0;
 	b = ((SIZE == 0) ? (unsigned long int)a : b);
 	b = ((SIZE == 1) ? (unsigned long long int)a : b);
 	b = ((SIZE == 2) ? (unsigned short int)a : b);
@@ -46,14 +47,14 @@ void				printoctplus(t_specs *st, long long int b, int i, char *r)
 		sh == 1 && PREC > (int)ft_strlen(r) ? PREC-- : 0;
 	}
 	else if (c == '0')
-		zerooct(st, b, i, r);
+		zerooct(st, i, r);
 	else
-		widthoct(st, b, i, r);
+		widthoct(st, i, r);
 	RETV += ((WID > PREC) ? WID : PREC + sh);
 	return ;
 }
 
-void				printoctminus(t_specs *st, long long int b, int i, char *r)
+void				printoctminus(t_specs *st, int i, char *r)
 {
 	int	sh;
 
@@ -108,7 +109,7 @@ int					printoct(t_specs *st, void *a, int i)
 	if ((PREC <= 0) && ((unsigned long long)a == 0))
 		zeroprecisionoct(st, 0);
 	else if (st->fl % 100 / 10 == 1)
-		printoctminus(st, b, i, ret);
+		printoctminus(st, i, ret);
 	else
 		printoctplus(st, b, i, ret);
 	ft_strdel(&ret);

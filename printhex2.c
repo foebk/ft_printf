@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-void	zerohex(t_specs *st, long long int b, int i, char *r)
+void	zerohex(t_specs *st, int i, char *r)
 {
 	int		sh;
 	char	*zx;
@@ -17,7 +17,7 @@ void	zerohex(t_specs *st, long long int b, int i, char *r)
 	return ;
 }
 
-void	widthhex(t_specs *st, long long int b, int i, char *r)
+void	widthhex(t_specs *st, int i, char *r)
 {
 	int		sh;
 	char	*zx;

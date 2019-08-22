@@ -13,7 +13,7 @@
 #include "ft_printf.h"
 #include "libft.h"
 
-void	zerooct(t_specs *st, long long int b, int i, char *r)
+void	zerooct(t_specs *st, int i, char *r)
 {
 	int		sh;
 
@@ -27,7 +27,7 @@ void	zerooct(t_specs *st, long long int b, int i, char *r)
 	return ;
 }
 
-void	widthoct(t_specs *st, long long int b, int i, char *r)
+void	widthoct(t_specs *st, int i, char *r)
 {
 	int		sh;
 

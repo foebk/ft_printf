@@ -11,34 +11,40 @@
 # **************************************************************************** #
 
 NAME = libftprintf.a
-SRC = ft_printf.c printint.c printoct.c printtxt.c specs.c printint2.c printoct2.c printpercent.c printhex.c printhex2.c
-OBJ = $(SRC:.c=.o)
-LIBFT = libft/libft.a
-HEADER = -I. -I./libft/includes
+FLAGS = -Wall -Werror -Wextra
+
+LIBFT_DIR = ./libft
+SRC_DIR = .
+INC_DIR = .
+OBJ_DIR = ./obj
+
+SRC	= ft_printf.c printint.c printoct.c printtxt.c specs.c printint2.c printoct2.c printpercent.c printhex.c printhex2.c
+
+OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:%.c=%.o))
+LIBFT = $(LIBFT_DIR)/libft.a
+LIBFT_H = $(LIBFT_DIR)/includes
 
 all: $(NAME)
 
-# $(OBJ): %.o: %.c
-# 		@gcc -c -I./libft/includes $< -o $@
-		
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
 
 $(LIBFT):
 	@make -C libft
 
-$(NAME): $(LIBFT)
-	@echo "LIBFT COMPILATED"
-	@cc -c $(SRC) -I./libft/includes -I.
-	@echo "OBJECT FILES COMPILATED"
-	@cp $(LIBFT) ./$(NAME)
-	@ar -rc $(NAME) $(OBJ)
-	@echo "DONE. HAVE FUN"
+$(NAME): $(OBJ_DIR) $(LIBFT) $(OBJS)
+	ar rcs $(NAME) $(OBJS) $(LIBFT_DIR)/objs/*.o
+	@ranlib $(NAME)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	gcc -g $(FLAGS) -c $< -I$(INC_DIR) -I$(LIBFT_H) -o $@
 
 clean:
-	/bin/rm -f $(OBJ)
+	@rm -rf $(OBJ_DIR)
 	@make -C libft clean
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@rm -rf $(NAME)
 	@make -C libft fclean
 
 re: fclean all

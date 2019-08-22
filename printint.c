@@ -19,6 +19,7 @@ long long int		paramsproc(void *a, t_specs *st, int flag, long long int d)
 	long long int	b;
 	char			c;
 
+	b = 0;
 	if (flag == 1)
 	{
 		b = ((SIZE == 0) ? (long int)a : b);

@@ -34,7 +34,7 @@ char	*gadr(uint64_t a)
 	return (result);
 }
 
-void	printadrwominus(t_specs *st, char *adr, int i, char c)
+void	printadrwominus(t_specs *st, char *adr, int i)
 {
 	PREC = (PREC > (int)ft_strlen(adr) ? PREC : (int)ft_strlen(adr));
 	while (++i < WID - PREC - 2)

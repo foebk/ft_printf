@@ -25,14 +25,14 @@ void				printhexplus(t_specs *st, long long int b, int i, char *r)
 		sh == 1 && PREC > (int)ft_strlen(r) ? PREC-- : 0;
 	}
 	else if (c == '0')
-		zerohex(st, b, i, r);
+		zerohex(st, i, r);
 	else
-		widthhex(st, b, i, r);
+		widthhex(st, i, r);
 	RETV += ((WID > PREC) ? WID : PREC + sh);
 	return ;
 }
 
-void				printhexminus(t_specs *st, long long int b, int i, char *r)
+void				printhexminus(t_specs *st, int i, char *r)
 {
 	int		sh;
 	char	*zx;
@@ -89,7 +89,7 @@ int					printhex(t_specs *st, void *a, int i)
 	if ((PREC <= 0) && ((unsigned long long)a == 0))
 		zeroprecisionhex(st, 0);
 	else if (st->fl % 100 / 10 == 1)
-		printhexminus(st, b, i, ret);
+		printhexminus(st, i, ret);
 	else
 		printhexplus(st, b, i, ret);
 	ft_strdel(&ret);
