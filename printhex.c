@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   printhex.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ction <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/08/22 12:12:15 by ction             #+#    #+#             */
+/*   Updated: 2019/08/22 12:12:18 by ction            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 extern int	g_returnvalue;
@@ -13,9 +25,8 @@ void				printhexplus(t_specs *st, long long int b, int i, char *r)
 	sh = 2;
 	st->fl = b == 0 ? (st->fl % 1000 / 100) : st->fl;
 	(st->fl % 1000 / 100 != 1) ? sh = 0 : 0;
-	if (PREC > WID)
+	if ((PREC > WID) && (sh = 0))
 	{
-		sh = 0;
 		PREC = (PREC < (int)ft_strlen(r)) ? (int)ft_strlen(r) : PREC;
 		if ((st->fl % 1000 / 100 == 1) && (write(1, zx, 2)))
 			sh = 2;
