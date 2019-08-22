@@ -36,15 +36,18 @@ char	*gadr(uint64_t a)
 
 void	printadrwominus(t_specs *st, char *adr, int i)
 {
-	PREC = (PREC > (int)ft_strlen(adr) ? PREC : (int)ft_strlen(adr));
-	while (++i < WID - PREC - 2)
+	PREC = (PREC == 0) && (adr[0] == '0') ? -2 : PREC;
+	PREC = PREC < (int)ft_strlen(adr) && PREC != -2 ?
+		(int)ft_strlen(adr) : PREC;
+	while (++i < WID - (PREC == -2 ? 0 : PREC) - 2)
 		write(1, " ", 1);
 	write(1, "0x", 2);
 	i = -1;
 	while (++i < PREC - (int)ft_strlen(adr))
 		write(1, "0", 1);
-	ft_putstr(adr);
-	RETV += ((WID > PREC ? WID : PREC + 2));
+	(PREC == -2) ? 0 : ft_putstr(adr);
+	PREC = (PREC == -2) ? PREC + 2 : PREC;
+	RETV += ((WID > PREC + 2 ? WID : PREC + 2));
 	free(adr);
 }
 
@@ -53,15 +56,17 @@ void	printadr(t_specs *st, char *adr, int i)
 	if ((st->fl % 100 / 10) == 1)
 	{
 		write(1, "0x", 2);
-		PREC = (PREC > (int)ft_strlen(adr) ? PREC : (int)ft_strlen(adr));
+		PREC = (PREC == 0) && (adr[0] == '0') ? -2 : PREC;
+		PREC = PREC < (int)ft_strlen(adr) && PREC != -2 ?
+			(int)ft_strlen(adr) : PREC;
 		while (++i < PREC - (int)ft_strlen(adr))
 			write(1, "0", 1);
-		ft_putstr(adr);
+		(PREC == -2) ? 0 : ft_putstr(adr);
 		i = -1;
-		while (++i < WID - PREC - 2)
+		while (++i < WID - (PREC == -2 ? 0 : PREC) - 2)
 			write(1, " ", 1);
-		RETV += ((WID > PREC ? WID : PREC + 2));
 		free(adr);
+		RETV += ((WID > PREC + 2 ? WID : PREC + 2));
 		return ;
 	}
 	printadrwominus(st, adr, i);

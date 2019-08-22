@@ -72,12 +72,12 @@ int		ft_printf(char *str, ...)
 	return (RETV);
 }
 
-// int	main()
-// {
-// 	char	*a = "hello";
-// 	int		i = -42;
+int	main()
+{
+	char	*a = "hello";
+	int		i = -42;
 
-// 	printf("| %d - symbol count ft_printf\n", ft_printf("%llo, %llo", 0llu, ULLONG_MAX));
-// 	printf("| %d - symbol count\n", printf("%llo, %llo", 0llu, ULLONG_MAX));
-// 	return 0;
-// }
+	printf("| %d - symbol count ft_printf\n", ft_printf("{%#.5x}", 1));
+	printf("| %d - symbol count\n", printf("{%#.5x}", 1));
+	return 0;
+}
