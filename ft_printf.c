@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "limits.h"
 
 int		g_returnvalue = 0;
 
@@ -61,11 +62,12 @@ int		ft_printf(char *str, ...)
 		{
 			if (!(st = specificator(str, &i)))
 				return (-1);
-			printarg(st, vl);
+			(SPEC != '0') ? printarg(st, vl) : 0;
 		}
 		str += i;
 	}
-	(st != NULL) ? free(st) : 0;
+	if (st != NULL)
+		free(st);
 	return (RETV);
 }
 
@@ -74,7 +76,7 @@ int	main()
 	char	*a = "hello";
 	char    *str = "%10.3p";
 
-	printf("| %d - symbol count ft_printf\n", ft_printf("%.5p, %.p", 0, 0));
-	printf("| %d - symbol count\n", printf("%.5p, %.p", 0, 0));
+	printf("| %d - symbol count ft_printf\n", ft_printf("%O", LONG_MAX));
+	printf("| %d - symbol count\n", printf("%O", LONG_MAX));
 	return 0;
 }

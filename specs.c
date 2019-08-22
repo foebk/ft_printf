@@ -24,7 +24,7 @@ t_specs	*structinit(void)
 	st->width = -1;
 	st->precision = -1;
 	st->size = -1;
-	st->spec = 0;
+	st->spec = '0';
 	return (st);
 }
 

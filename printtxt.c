@@ -50,8 +50,6 @@ void	printadrwominus(t_specs *st, char *adr, int i)
 
 void	printadr(t_specs *st, char *adr, int i)
 {
-	char	c;
-
 	if ((st->fl % 100 / 10) == 1)
 	{
 		write(1, "0x", 2);
@@ -66,7 +64,7 @@ void	printadr(t_specs *st, char *adr, int i)
 		free(adr);
 		return ;
 	}
-	printadrwominus(st, adr, i, c);
+	printadrwominus(st, adr, i);
 }
 
 void	printstr(t_specs *st, char *str, int i)
