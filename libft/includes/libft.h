@@ -92,6 +92,6 @@ int					ft_strnchr(const char *str, int ch);
 char				*ft_strbs(char *str, char ch);
 char				*ft_strfs(char *str, char ch);
 void				ft_pushfront(t_list *lst, t_list **head);
-char				*ft_itoa_base(long long int value, int base);
+char				*ft_itoa_base(unsigned long long value, int base);
 
 #endif

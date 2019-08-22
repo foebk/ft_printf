@@ -18,7 +18,8 @@ SRC_DIR = .
 INC_DIR = .
 OBJ_DIR = ./obj
 
-SRC	= ft_printf.c printint.c printoct.c printtxt.c specs.c printint2.c printoct2.c printpercent.c printhex.c printhex2.c
+SRC	= ft_printf.c printint.c printoct.c printtxt.c specs.c printint2.c \
+	printoct2.c printpercent.c printhex.c printhex2.c printunsigned.c
 
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:%.c=%.o))
 LIBFT = $(LIBFT_DIR)/libft.a

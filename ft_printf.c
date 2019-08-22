@@ -27,6 +27,7 @@ void	printarg(t_specs *st, va_list vl)
 	printint(st, va_arg(vl, void *), i) : 0;
 	(ft_tolower(SPEC) == 'o') ? printoct(st, va_arg(vl, void *), 0) : 0;
 	(ft_tolower(SPEC) == 'x') ? printhex(st, va_arg(vl, void *), 0) : 0;
+	(ft_tolower(SPEC) == 'u') ? printuns(st, va_arg(vl, void *), 0) : 0;
 	(SPEC == '%') ? printpercent(st, 0) : 0;
 }
 
@@ -60,23 +61,23 @@ int		ft_printf(char *str, ...)
 			break ;
 		if (str[0] == '%')
 		{
+			(st != NULL) ? free(st) : 0;
 			if (!(st = specificator(str, &i)))
 				return (-1);
 			(SPEC != '0') ? printarg(st, vl) : 0;
 		}
 		str += i;
 	}
-	if (st != NULL)
-		free(st);
+	(st != NULL) ? free(st) : 0;
 	return (RETV);
 }
 
-int	main()
-{
-	char	*a = "hello";
-	char    *str = "%10.3p";
+// int	main()
+// {
+// 	char	*a = "hello";
+// 	int		i = -42;
 
-	printf("| %d - symbol count ft_printf\n", ft_printf("%O", LONG_MAX));
-	printf("| %d - symbol count\n", printf("%O", LONG_MAX));
-	return 0;
-}
+// 	printf("| %d - symbol count ft_printf\n", ft_printf("%llo, %llo", 0llu, ULLONG_MAX));
+// 	printf("| %d - symbol count\n", printf("%llo, %llo", 0llu, ULLONG_MAX));
+// 	return 0;
+// }

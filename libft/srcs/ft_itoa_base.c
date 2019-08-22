@@ -12,11 +12,11 @@
 
 #include "libft.h"
 
-char	*ft_itoa_base(long long int value, int base)
+char	*ft_itoa_base(unsigned long long value, int base)
 {
-	int				i;
-	long long int	val;
-	char			*res;
+	int						i;
+	unsigned long long int	val;
+	char					*res;
 
 	val = value;
 	i = 0;
@@ -24,11 +24,9 @@ char	*ft_itoa_base(long long int value, int base)
 		return (NULL);
 	while ((value / base != 0) && ++i)
 		value /= base;
-	((base == 10) && (val < 0)) ? i++ : 0;
 	if ((res = malloc(sizeof(char) * (i + 2))) == 0)
 		return (NULL);
 	res[i + 1] = '\0';
-	((base == 10) && (val < 0)) ? res[i] = '-' : 0;
 	while (val / base)
 	{
 		res[i] = (val % base > 9 ? ft_abs(val % base % 10) +
