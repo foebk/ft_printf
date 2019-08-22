@@ -72,12 +72,14 @@ int		ft_printf(char *str, ...)
 	return (RETV);
 }
 
-int	main()
-{
-	char	*a = "hello";
-	int		i = -42;
+// int	main()
+// {
+// 	char	*ret;
+// 	char	*tret;
+// 	char	*a = "hello";
+// 	int		i = -42;
 
-	printf("| %d - symbol count ft_printf\n", ft_printf("{%#.5x}", 1));
-	printf("| %d - symbol count\n", printf("{%#.5x}", 1));
-	return 0;
-}
+// 	printf("| %d - symbol count ft_printf\n", ft_printf("%-+-12.7Dt%0 4i %04.2% et %lc titi", 125, 124, 256));
+// 	printf("| %d - symbol count\n", printf("%-+-12.7Dt%0 4i %04.2% et %lc titi", 125, 124, 256));
+// 	return 0;
+// }

@@ -25,8 +25,9 @@ void				printhexplus(t_specs *st, long long int b, int i, char *r)
 	sh = 2;
 	st->fl = b == 0 ? (st->fl % 1000 / 100) : st->fl;
 	(st->fl % 1000 / 100 != 1) ? sh = 0 : 0;
-	if ((PREC > WID) && (sh = 0))
+	if (PREC > WID)
 	{
+		sh = 0;
 		PREC = (PREC < (int)ft_strlen(r)) ? (int)ft_strlen(r) : PREC;
 		if ((st->fl % 1000 / 100 == 1) && (write(1, zx, 2)))
 			sh = 2;
@@ -58,7 +59,7 @@ void				printhexminus(t_specs *st, int i, char *r)
 		write(1, "0", 1);
 	ft_putstr(r);
 	i = 0;
-	sh == 1 && PREC > (int)ft_strlen(r) ? i-- : 0;
+	sh == 2 && PREC > (int)ft_strlen(r) ? i-- : 0;
 	while (i++ < WID - PREC - sh)
 		write(1, " ", 1);
 	RETV += ((WID > PREC) ? WID : PREC + sh);

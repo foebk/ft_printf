@@ -25,7 +25,7 @@ void	widthhex(t_specs *st, int i, char *r)
 	zx = (SPEC == 'X' ? "0X" : "0x");
 	sh = 2;
 	(st->fl % 1000 / 100 != 1) ? sh = 0 : 0;
-	PREC = (PREC > (int)ft_strlen(r) + sh) ? PREC : (int)ft_strlen(r);
+	PREC = (PREC > (int)ft_strlen(r)) ? PREC : (int)ft_strlen(r);
 	while (++i <= WID - PREC - sh)
 		write(1, " ", 1);
 	(st->fl % 1000 / 100 == 1) ? write(1, zx, 2) : 0;
