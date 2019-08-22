@@ -23,7 +23,7 @@ void	printarg(t_specs *st, va_list vl)
 	(SPEC == 'c') ? printchar(st, va_arg(vl, int), i) : 0;
 	(SPEC == 's') ? printstr(st, va_arg(vl, char *), i) : 0;
 	(SPEC == 'p') ? printadr(st, gadr((uint64_t)(va_arg(vl, void *))), i) : 0;
-	((ft_tolower(SPEC) == 'd') || (SPEC == 'i')) ? 
+	((ft_tolower(SPEC) == 'd') || (SPEC == 'i')) ?
 	printint(st, va_arg(vl, void *), i) : 0;
 	(ft_tolower(SPEC) == 'o') ? printoct(st, va_arg(vl, void *), 0) : 0;
 	(ft_tolower(SPEC) == 'x') ? printhex(st, va_arg(vl, void *), 0) : 0;

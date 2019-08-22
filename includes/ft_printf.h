@@ -24,16 +24,17 @@
 # include <stdarg.h>
 # include <stdint.h>
 
-int				ft_printf(char *str, ...);
+int					ft_printf(char *str, ...);
 
-typedef struct	s_printf
+typedef struct		s_printf
 {
 	short int		fl; /* 2^ (1 = '+' 10 = '-' 100 = '#' 1000 = ' ' 10000 = '0') */
 	int				width;
 	int				precision;
 	short int		size; /* 0 = 'l' 1 = 'll' 2 = 'h' 3 = 'hh' 4 = 'L' */
 	char			spec;
-}				t_specs;
+}					t_specs;
+
 t_specs				*specificator(char *s, int *ptr);
 
 void				printstr(t_specs *st, char *str, int i);
@@ -41,7 +42,7 @@ void				printadr(t_specs *st, char *adr, int i);
 char				*gadr(uint64_t a);
 void				printchar(t_specs *st, int letter, int i);
 
-int 				printint(t_specs *st, void *a, int i);
+int					printint(t_specs *st, void *a, int i);
 void				widthint(t_specs *st, long long int b, int i, char *r);
 void				zeroint(t_specs *st, long long int b, int i, char *r);
 long long int		paramsproc(void *a, t_specs *st, int flag, long long int d);

@@ -14,28 +14,32 @@
 
 extern int	g_returnvalue;
 
+void				precissionhex(t_specs *st, int i, int sh, char *r)
+{
+	char	*zx;
+
+	zx = (SPEC == 'X' ? "0X" : "0x");
+	sh = 0;
+	PREC = (PREC < (int)ft_strlen(r)) ? (int)ft_strlen(r) : PREC;
+	if ((st->fl % 1000 / 100 == 1) && (write(1, zx, 2)))
+		sh = 2;
+	while (i++ < PREC - (int)ft_strlen(r))
+		write(1, "0", 1);
+	ft_putstr(r);
+	sh == 1 && PREC > (int)ft_strlen(r) ? PREC-- : 0;
+}
+
 void				printhexplus(t_specs *st, long long int b, int i, char *r)
 {
 	int		sh;
 	char	c;
-	char	*zx;
 
-	zx = (SPEC == 'X' ? "0X" : "0x");
 	c = (((st->fl / 10000 == 1) && (PREC == -1)) ? '0' : ' ');
 	sh = 2;
 	st->fl = b == 0 ? (st->fl % 1000 / 100) : st->fl;
 	(st->fl % 1000 / 100 != 1) ? sh = 0 : 0;
 	if (PREC > WID)
-	{
-		sh = 0;
-		PREC = (PREC < (int)ft_strlen(r)) ? (int)ft_strlen(r) : PREC;
-		if ((st->fl % 1000 / 100 == 1) && (write(1, zx, 2)))
-			sh = 2;
-		while (i++ < PREC - (int)ft_strlen(r))
-			write(1, "0", 1);
-		ft_putstr(r);
-		sh == 1 && PREC > (int)ft_strlen(r) ? PREC-- : 0;
-	}
+		precissionhex(st, i, sh, r);
 	else if (c == '0')
 		zerohex(st, i, r);
 	else

@@ -12,38 +12,38 @@
 
 #include "ft_printf.h"
 
-extern int          g_returnvalue;
+extern int	g_returnvalue;
 
-char                *ft_utoa(unsigned long long n)
+char		*ft_utoa(unsigned long long n)
 {
-    unsigned long long  val;
-    int                 i;
-    char                *res;
+	unsigned long long	val;
+	int					i;
+	char				*res;
 
-    i = 0;
-    val = n;
-    while ((val / 10 != 0) && ++i)
+	i = 0;
+	val = n;
+	while ((val / 10 != 0) && ++i)
 		val /= 10;
-    if ((res = malloc(sizeof(char) * (i + 2))) == 0)
+	if ((res = malloc(sizeof(char) * (i + 2))) == 0)
 		return (NULL);
-    res[i + 1] = '\0';
-    while (n / 10)
+	res[i + 1] = '\0';
+	while (n / 10)
 	{
 		res[i] = (n % 10 + 48);
 		n /= 10;
 		i--;
 	}
-    res[i] = (n + '0');
-    return (res);
+	res[i] = (n + '0');
+	return (res);
 }
 
-void				printunsplus(t_specs *st, long long int b, int i, char *r)
+void		printunsplus(t_specs *st, long long int b, int i, char *r)
 {
 	char	c;
 
-    c = st->fl / 10000 == 1 && PREC == -1 ? '0' : ' ';
+	c = st->fl / 10000 == 1 && PREC == -1 ? '0' : ' ';
 	st->fl = b == 0 ? (st->fl % 1000 / 100) : st->fl;
-    PREC = ((PREC == -1) && (st->fl / 10000 == 1)) ? WID : PREC;
+	PREC = ((PREC == -1) && (st->fl / 10000 == 1)) ? WID : PREC;
 	PREC = (PREC < (int)ft_strlen(r)) ? (int)ft_strlen(r) : PREC;
 	if ((PREC > WID) || (c == '0'))
 	{
@@ -52,19 +52,19 @@ void				printunsplus(t_specs *st, long long int b, int i, char *r)
 		ft_putstr(r);
 	}
 	else
-	{  
-        while (i++ < WID - PREC)
-            write(1, " ", 1);
-        i = 0;
-        while (i++ < PREC - (int)ft_strlen(r))
-            write(1, "0", 1);
-        ft_putstr(r);
-    }
+	{
+		while (i++ < WID - PREC)
+			write(1, " ", 1);
+		i = 0;
+		while (i++ < PREC - (int)ft_strlen(r))
+			write(1, "0", 1);
+		ft_putstr(r);
+	}
 	RETV += ((WID > PREC) ? WID : PREC);
 	return ;
 }
 
-void				printunsminus(t_specs *st, int i, char *r)
+void		printunsminus(t_specs *st, int i, char *r)
 {
 	PREC = (int)ft_strlen(r) > PREC ? (int)ft_strlen(r) : PREC;
 	while (i++ < PREC - (int)ft_strlen(r))
@@ -77,7 +77,7 @@ void				printunsminus(t_specs *st, int i, char *r)
 	return ;
 }
 
-void				zeroprecisionuns(t_specs *st, int i)
+void		zeroprecisionuns(t_specs *st, int i)
 {
 	int		j;
 	char	c;
@@ -102,7 +102,7 @@ void				zeroprecisionuns(t_specs *st, int i)
 	RETV += (WID <= 0) ? j : WID;
 }
 
-int					printuns(t_specs *st, void *a, int i)
+int			printuns(t_specs *st, void *a, int i)
 {
 	unsigned long long int	b;
 	char					*ret;

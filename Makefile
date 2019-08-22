@@ -14,8 +14,8 @@ NAME = libftprintf.a
 FLAGS = -Wall -Werror -Wextra
 
 LIBFT_DIR = ./libft
-SRC_DIR = .
-INC_DIR = .
+SRC_DIR = ./srcs
+INC_DIR = ./includes
 OBJ_DIR = ./obj
 
 SRC	= ft_printf.c printint.c printoct.c printtxt.c specs.c printint2.c \
