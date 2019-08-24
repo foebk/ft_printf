@@ -28,6 +28,8 @@ void	printarg(t_specs *st, va_list vl)
 	(ft_tolower(SPEC) == 'o') ? printoct(st, va_arg(vl, void *), 0) : 0;
 	(ft_tolower(SPEC) == 'x') ? printhex(st, va_arg(vl, void *), 0) : 0;
 	(ft_tolower(SPEC) == 'u') ? printuns(st, va_arg(vl, void *), 0) : 0;
+	(SPEC == 'f') && (SIZE == -1) ? printfl(st, (uint32_t)va_arg
+		(vl, void *), i) : 0;
 	(SPEC == '%') ? printpercent(st, 0) : 0;
 }
 
@@ -72,14 +74,12 @@ int		ft_printf(char *str, ...)
 	return (RETV);
 }
 
-// int	main()
-// {
-// 	char	*ret;
-// 	char	*tret;
-// 	char	*a = "hello";
-// 	int		i = -42;
+int	main()
+{
+	char	*ret;
+	int		i = -42;
 
-// 	printf("| %d - symbol count ft_printf\n", ft_printf("%-+-12.7Dt%0 4i %04.2% et %lc titi", 125, 124, 256));
-// 	printf("| %d - symbol count\n", printf("%-+-12.7Dt%0 4i %04.2% et %lc titi", 125, 124, 256));
-// 	return 0;
-// }
+	printf("| %d - symbol count ft_printf\n", ft_printf("%f", 1.5));
+	printf("| %d - symbol count\n", printf("%f", 1.5));
+	return 0;
+}

@@ -18,6 +18,9 @@
 # define WID st->width
 # define SIZE st->size
 # define RETV g_returnvalue
+# define EXP stf->exp
+# define MANT stf->mantissa
+# define SIGN stf->sign
 
 # include "libft.h"
 # include <stdio.h>
@@ -34,6 +37,13 @@ typedef struct		s_printf
 	short int		size; /* 0 = 'l' 1 = 'll' 2 = 'h' 3 = 'hh' 4 = 'L' */
 	char			spec;
 }					t_specs;
+
+typedef struct 		s_float
+{
+	short int		sign;
+	unsigned int	exp;
+	char			*mantissa;
+}					t_float;
 
 t_specs				*specificator(char *s, int *ptr);
 
@@ -60,5 +70,7 @@ void				zerohex(t_specs *st, int i, char *r);
 void				widthhex(t_specs *st, int i, char *r);
 
 int					printuns(t_specs *st, void *a, int i);
+
+int					printfl(t_specs *st, uint64_t b, int i);
 
 #endif
