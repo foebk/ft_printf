@@ -71,6 +71,6 @@ void				widthhex(t_specs *st, int i, char *r);
 
 int					printuns(t_specs *st, void *a, int i);
 
-int					printfl(t_specs *st, uint64_t b, int i);
+int					printfl(t_specs *st, double b, int i);
 
 #endif
