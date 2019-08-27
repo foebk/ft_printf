@@ -24,7 +24,7 @@ char	*ft_itoa_base(unsigned long long value, int base)
 		return (NULL);
 	while ((value / base != 0) && ++i)
 		value /= base;
-	if ((res = malloc(sizeof(char) * (i + 2))) == 0)
+	if ((res = ft_memalloc(sizeof(char) * (i + 2))) == 0)
 		return (NULL);
 	res[i + 1] = '\0';
 	while (val / base)

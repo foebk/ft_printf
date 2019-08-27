@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   ft_btoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ction <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/16 18:04:48 by ction             #+#    #+#             */
-/*   Updated: 2019/04/16 18:04:49 by ction            ###   ########.fr       */
+/*   Created: 2019/08/27 14:11:32 by ction             #+#    #+#             */
+/*   Updated: 2019/08/27 14:11:35 by ction            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memalloc(size_t size)
+unsigned long long	ft_btoi(char *str)
 {
-	char *dest;
+	int res;
+	int i;
+	int pow;
 
-	dest = malloc(size);
-	if (dest == NULL)
-		exit(0);
-	ft_bzero(dest, size);
-	return (dest);
+	i = -1;
+	pow = 0;
+	res = 0;
+	while (str[++i] != '\0')
+		if (str[i] != '0' && str[i] != '1')
+			return (0);
+	while (--i != -1)
+	{
+		(str[i] == '1') ? res += ft_power(2, pow) : 0;
+		pow++;
+	}
+	return (res);
 }

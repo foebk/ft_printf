@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   ft_powerneg.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ction <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/16 18:04:48 by ction             #+#    #+#             */
-/*   Updated: 2019/04/16 18:04:49 by ction            ###   ########.fr       */
+/*   Created: 2019/08/27 18:34:09 by ction             #+#    #+#             */
+/*   Updated: 2019/08/27 18:34:11 by ction            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memalloc(size_t size)
+double	ft_powerneg(float a, int b)
 {
-	char *dest;
+	float pow;
 
-	dest = malloc(size);
-	if (dest == NULL)
-		exit(0);
-	ft_bzero(dest, size);
-	return (dest);
+	(a < 0) ? a *= -1 : 0;
+	a = 1.0 / a;
+	pow = a;
+	if (b == 0)
+		return (0);
+	while (--b != 0)
+		a *= pow;
+	return (a);
 }

@@ -29,7 +29,7 @@ SRC = ft_bzero.c ft_atoi.c \
 	ft_lstiter.c ft_lstmap.c ft_expmem.c \
 	ft_str_is_printable.c ft_strcasecmp.c ft_abs.c \
 	ft_strnchr.c ft_strbs.c ft_strfs.c ft_pushfront.c \
-	ft_itoa_base.c
+	ft_itoa_base.c ft_power.c ft_btoi.c ft_powerneg.c
 CFLAGS = -g -Wall -Wextra -Werror
 OBJ_DIR = ./objs
 SRC_DIR = ./srcs
