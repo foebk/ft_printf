@@ -21,6 +21,7 @@
 # define EXP stf->exp
 # define MANT stf->mantissa
 # define SIGN stf->sign
+# define SOL stf->solid
 
 # include "libft.h"
 # include <stdio.h>
@@ -41,8 +42,9 @@ typedef struct		s_printf
 typedef struct 		s_float
 {
 	short int		sign;
-	unsigned int	exp;
 	char			*mantissa;
+	char			*solid;
+	int				exp;
 }					t_float;
 
 t_specs				*specificator(char *s, int *ptr);
@@ -71,6 +73,8 @@ void				widthhex(t_specs *st, int i, char *r);
 
 int					printuns(t_specs *st, void *a, int i);
 
-int					printfl(t_specs *st, double b, int i);
+int     			printfl(t_specs *st, float b, int i);
+
+t_float				*getbinfloat(float a, t_float *stf);
 
 #endif

@@ -54,7 +54,7 @@ char			*ft_itoa(long long int n)
 	num = n;
 	if ((unsigned long int)n == -9223372036854775808UL)
 	{
-		if (!(dest = malloc(sizeof(char) * 21)))
+		if (!(dest = ft_memalloc(sizeof(char) * 21)))
 			return (NULL);
 		dest = ft_strdup("-9223372036854775808");
 		return (dest);

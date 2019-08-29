@@ -12,10 +12,11 @@
 
 #include "libft.h"
 
-double	ft_powerneg(float a, int b)
+double	ft_powerneg(double a, int b)
 {
-	float pow;
+	double pow;
 
+	b = ft_abs(b);
 	(a < 0) ? a *= -1 : 0;
 	a = 1.0 / a;
 	pow = a;

@@ -29,7 +29,7 @@ void	printarg(t_specs *st, va_list vl)
 	(ft_tolower(SPEC) == 'x') ? printhex(st, va_arg(vl, void *), 0) : 0;
 	(ft_tolower(SPEC) == 'u') ? printuns(st, va_arg(vl, void *), 0) : 0;
 	(SPEC == 'f') && (SIZE == -1) ? printfl(st, va_arg
-		(vl, long double), i) : 0;
+		(vl, double), i) : 0;
 	(SPEC == '%') ? printpercent(st, 0) : 0;
 }
 
@@ -79,7 +79,7 @@ int	main()
 	char	*ret;
 	int		i = -42;
 
-	printf("| %d - symbol count ft_printf\n", ft_printf("%-+40.f", -45.0));
-	printf("| %d - symbol count\n", printf("%-+40.f", -45.0));
+	printf("| %d - symbol count ft_printf\n", ft_printf("%f", 4.2121414));
+	printf("| %d - symbol count\n", printf("%.20f", 4.2121414));
 	return 0;
 }

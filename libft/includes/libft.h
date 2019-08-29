@@ -95,6 +95,6 @@ void				ft_pushfront(t_list *lst, t_list **head);
 char				*ft_itoa_base(unsigned long long value, int base);
 long long int		ft_power(int a, int b);
 unsigned long long	ft_btoi(char *str);
-double				ft_powerneg(float a, int b);
+double				ft_powerneg(double a, int b);
 
 #endif
