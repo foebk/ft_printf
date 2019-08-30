@@ -6,17 +6,7 @@
 
 int main()
 {
-	double a;
-	int i;
-	int j;
-
-	i = -1;
-	j = 0;
-	while (++i != 20)
-	{
-		a += ft_powerneg(2, j);
-		ft_powerneg(2, j) / 0.1 == 0 ? a *= 10 : 0;
-		j++;
-		printf("%f\n", ft_powerneg(2, j));
-	}
+	double a = 4.24;
+	
+	printf("%f\n", a - (int)a);
 }

@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   getbinfloat.c                                      :+:      :+:    :+:   */
+/*   getbindouble.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ction <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/30 18:26:47 by ction             #+#    #+#             */
-/*   Updated: 2019/08/30 18:26:50 by ction            ###   ########.fr       */
+/*   Created: 2019/08/30 17:53:04 by ction             #+#    #+#             */
+/*   Updated: 2019/08/30 17:53:05 by ction            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdint.h>
+#include "libft.h"
+#include <limits.h>
+#include <stdio.h>
 #include "ft_printf.h"
 
-void		getmantfloat(double d, t_float *stf)
+void		getmantdouble(double d, t_float *stf)
 {
 	char	*res;
 	int		i;
@@ -29,7 +33,7 @@ void		getmantfloat(double d, t_float *stf)
 	MANT = res;
 }
 
-void		getsolidfloat(char *str, t_float *stf)
+void		getsoliddouble(char *str, t_float *stf)
 {
 	int					exp;
 	char				tmp;
@@ -38,37 +42,38 @@ void		getsolidfloat(char *str, t_float *stf)
 	char				*result;
 
 	j = -1;
-	tmp = str[8];
-	str[8] = '\0';
-	exp = ft_btoi(str) - 127;
+	tmp = str[11];
+	str[11] = '\0';
+	exp = ft_btoi(str) - 1023;
 	EXP = exp;
-	str[8] = tmp;
+	str[11] = tmp;
 	res = ft_strnew(exp + 1);
 	res[0] = '1';
 	while (++j != exp)
-		res[j + 1] = str[8 + j];
+		res[j + 1] = str[11 + j];
 	SOL = ft_itoa(ft_btoi(res));
 	free(res);
 }
 
-t_float		*getbinfloat(float a, t_float *stf, double d)
+t_float		*getbindouble(double a, t_float *stf)
 {
-	uint32_t	*c;
+	uint64_t	*c;
 	char		*str;
 	int			i;
 	char		*tmp;
 
 	i = -1;
-	c = (uint32_t *)&a;
-	str = ft_strnew(32);
+	c = (uint64_t *)&a;
+	str = ft_strnew(64);
 	tmp = ft_itoa_base(*c, 2);
-	str = str + 32 - ft_strlen(tmp);
+	str = str + 64 - ft_strlen(tmp);
 	str = ft_strcpy(str, tmp);
-	str = str - (32 - ft_strlen(tmp));
+	str = str - (64 - ft_strlen(tmp));
 	while ((str[++i] != '0') && (str[i] != '1'))
 		str[i] = '0';
+	printf("%s\n", str);
 	SIGN = (str[0] == '0') ? 0 : 1;
-	getsolidfloat(str + 1, stf);
-	getmantfloat(d, stf);
+	getsoliddouble(str + 1, stf);
+	getmantdouble(a, stf);
 	return (stf);
 }

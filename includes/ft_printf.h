@@ -73,8 +73,9 @@ void				widthhex(t_specs *st, int i, char *r);
 
 int					printuns(t_specs *st, void *a, int i);
 
-int     			printfl(t_specs *st, float b, int i);
-
-t_float				*getbinfloat(float a, t_float *stf);
+int     			printfl(t_specs *st, double b, int i);
+t_float				*getbinfloat(float a, t_float *stf, double d);
+int					printdouble(t_specs *st, double a, int i);
+t_float				*getbindouble(double a, t_float *stf);
 
 #endif
