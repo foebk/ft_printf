@@ -10,10 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdint.h>
-#include "libft.h"
-#include <limits.h>
-#include <stdio.h>
 #include "ft_printf.h"
 
 void		getmantdouble(double d, t_float *stf)
@@ -39,7 +35,6 @@ void		getsoliddouble(char *str, t_float *stf)
 	char				tmp;
 	char				*res;
 	int					j;
-	char				*result;
 
 	j = -1;
 	tmp = str[11];
@@ -71,7 +66,6 @@ t_float		*getbindouble(double a, t_float *stf)
 	str = str - (64 - ft_strlen(tmp));
 	while ((str[++i] != '0') && (str[i] != '1'))
 		str[i] = '0';
-	printf("%s\n", str);
 	SIGN = (str[0] == '0') ? 0 : 1;
 	getsoliddouble(str + 1, stf);
 	getmantdouble(a, stf);
