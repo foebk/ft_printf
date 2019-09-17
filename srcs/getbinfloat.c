@@ -12,11 +12,19 @@
 
 #include "ft_printf.h"
 
-void		getmantfloat(double d, t_float *stf)
+void		getmantfloat(double d, t_float *stf, t_specs *st)
 {
-	char	*res;
-	int		i;
+	char		*res;
+	int			i;
+	long double	j;
 
+	i = -1;
+	j = 0.1;
+	PREC = (PREC <= 0 ? 6 : PREC);
+	while (++i != PREC)
+		j *= 0.1;
+	d = d + j * 5;
+	printf("%f\n", d);
 	i = -1;
 	res = ft_strnew(52);
 	res[52] = '\0';
@@ -51,7 +59,7 @@ void		getsolidfloat(char *str, t_float *stf)
 	free(res);
 }
 
-t_float		*getbinfloat(float a, t_float *stf, double d)
+t_float		*getbinfloat(float a, t_float *stf, double d, t_specs *st)
 {
 	uint32_t	*c;
 	char		*str;
@@ -69,6 +77,6 @@ t_float		*getbinfloat(float a, t_float *stf, double d)
 		str[i] = '0';
 	SIGN = (str[0] == '0') ? 0 : 1;
 	getsolidfloat(str + 1, stf);
-	getmantfloat(d, stf);
+	getmantfloat(d, stf, st);
 	return (stf);
 }
