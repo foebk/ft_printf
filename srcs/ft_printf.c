@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "limits.h"
 
 int		g_returnvalue = 0;
 
@@ -28,10 +27,12 @@ void	printarg(t_specs *st, va_list vl)
 	(ft_tolower(SPEC) == 'o') ? printoct(st, va_arg(vl, void *), 0) : 0;
 	(ft_tolower(SPEC) == 'x') ? printhex(st, va_arg(vl, void *), 0) : 0;
 	(ft_tolower(SPEC) == 'u') ? printuns(st, va_arg(vl, void *), 0) : 0;
-	(SPEC == 'f') && (SIZE == -1) ? printfl(st, va_arg
-		(vl, double), i) : 0;
-	(SPEC == 'f') && (SIZE == 0) ? printdouble(st, va_arg
-		(vl, double), i) : 0;
+	if (SPEC == 'f')
+	{
+		(SIZE == -1) ? printfl(st, va_arg(vl, double), i) : 0;
+		(SIZE == 0) ? printdouble(st, va_arg(vl, double), i) : 0;
+		(SIZE == 4) ? printlongdouble(st, va_arg(vl, long double), i) : 0;
+	}
 	(SPEC == '%') ? printpercent(st, 0) : 0;
 }
 
@@ -78,10 +79,8 @@ int		ft_printf(char *str, ...)
 
 int	main()
 {
-	char	*ret;
-	int		i = -42;
-
-	printf("| %d - symbol count\n", printf("%-10.5lf", 44.21412534213));
-	printf("| %d - symbol count ft_printf\n", ft_printf("%-10.5lf", 44.21412534213));
+	float c = 2401.21;
+	printf("| %d - symbol count ft_printf\n", ft_printf("%-+20.1f", c));
+	printf("| %d - symbol count\n", printf("%-+20.1f", c));
 	return 0;
 }

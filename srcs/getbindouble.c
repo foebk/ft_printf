@@ -12,11 +12,18 @@
 
 #include "ft_printf.h"
 
-void		getmantdouble(double d, t_float *stf)
+void		getmantdouble(double d, t_float *stf, t_specs *st)
 {
 	char	*res;
 	int		i;
+	long double	j;
 
+	i = -1;
+	j = 0.1;
+	PREC = (PREC <= 0 ? 6 : PREC);
+	while (++i != PREC)
+		j *= 0.1;
+	d = d + j * 5;
 	i = -1;
 	res = ft_strnew(52);
 	res[52] = '\0';
@@ -50,7 +57,7 @@ void		getsoliddouble(char *str, t_float *stf)
 	free(res);
 }
 
-t_float		*getbindouble(double a, t_float *stf)
+t_float		*getbindouble(double a, t_float *stf, t_specs *st)
 {
 	uint64_t	*c;
 	char		*str;
@@ -68,6 +75,6 @@ t_float		*getbindouble(double a, t_float *stf)
 		str[i] = '0';
 	SIGN = (str[0] == '0') ? 0 : 1;
 	getsoliddouble(str + 1, stf);
-	getmantdouble(a, stf);
+	getmantdouble(a, stf, st);
 	return (stf);
 }

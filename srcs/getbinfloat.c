@@ -20,11 +20,10 @@ void		getmantfloat(double d, t_float *stf, t_specs *st)
 
 	i = -1;
 	j = 0.1;
-	PREC = (PREC <= 0 ? 6 : PREC);
+	PREC = (PREC < 0 ? 6 : PREC);
 	while (++i != PREC)
 		j *= 0.1;
 	d = d + j * 5;
-	printf("%f\n", d);
 	i = -1;
 	res = ft_strnew(52);
 	res[52] = '\0';
