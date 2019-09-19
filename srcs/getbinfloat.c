@@ -50,6 +50,11 @@ void		getsolidfloat(char *str, t_float *stf)
 	exp = ft_btoi(str) - 127;
 	EXP = exp;
 	str[8] = tmp;
+	if ((exp == -127) && (SOL = ft_strnew(1)))
+	{
+		SOL[0] = '0';
+		return ;
+	}
 	res = ft_strnew(exp + 1);
 	res[0] = '1';
 	while (++j != exp)

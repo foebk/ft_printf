@@ -79,8 +79,8 @@ int		ft_printf(char *str, ...)
 
 int	main()
 {
-	float c = 2401.21;
-	printf("| %d - symbol count ft_printf\n", ft_printf("%-+20.1f", c));
-	printf("| %d - symbol count\n", printf("%-+20.1f", c));
+	float c = 1.125;
+	printf("| %d - symbol count ft_printf\n", ft_printf("%0100.40f", c));
+	printf("| %d - symbol count\n", printf("%0100.40f", c));
 	return 0;
 }
