@@ -15,7 +15,6 @@ long long int	ft_power(int a, int b)
 	int pow;
 
 	pow = a;
-	
 	if (b == 0)
 		return (1);
 	while (--b != 0)

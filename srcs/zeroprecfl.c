@@ -12,8 +12,7 @@
 
 #include "ft_printf.h"
 
-
-extern int  g_returnvalue;
+extern int	g_returnvalue;
 
 void		zeroprecfl2(t_specs *st, t_float *stf, double a)
 {

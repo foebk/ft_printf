@@ -14,8 +14,8 @@
 
 void		getmantdouble(double d, t_float *stf, t_specs *st)
 {
-	char	*res;
-	int		i;
+	char		*res;
+	int			i;
 	long double	j;
 
 	i = -1;

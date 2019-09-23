@@ -76,11 +76,3 @@ int		ft_printf(char *str, ...)
 	(st != NULL) ? free(st) : 0;
 	return (RETV);
 }
-
-// int	main()
-// {
-// 	long double c = 635364575;
-// 	printf("| %d - symbol count ft_printf\n", ft_printf("%Lf", -1.42, -1.42, -1.42l));
-// 	printf("| %d - symbol count\n", printf("{%f}{%lf}{%Lf}", -1.42, -1.42, -1.42l));
-// 	return 0;
-// }
