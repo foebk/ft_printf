@@ -73,11 +73,14 @@ void				widthhex(t_specs *st, int i, char *r);
 
 int					printuns(t_specs *st, void *a, int i);
 
-int     			printfl(t_specs *st, double b, int i);
+int     			printfl(t_specs *st, double b);
 t_float				*getbinfloat(float a, t_float *stf, double d, t_specs *st);
 int					printdouble(t_specs *st, double a, int i);
 t_float				*getbindouble(double a, t_float *stf, t_specs *st);
 int					printlongdouble(t_specs *st, long double a, int i);
 t_float				*getbinlongdouble(long double a, t_float *stf, t_specs *st);
+void				zeroprecfl2(t_specs *st, t_float *stf, double a);
+void				zeroprecfl(t_specs *st, t_float *stf, double a, int i);
+void				fparamsproc(t_float *stf, t_specs *st);
 
 #endif

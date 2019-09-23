@@ -14,9 +14,9 @@
 
 unsigned long long	ft_btoi(char *str)
 {
-	int res;
-	int i;
-	int pow;
+	unsigned long long	res;
+	int					i;
+	int					pow;
 
 	i = -1;
 	pow = 0;

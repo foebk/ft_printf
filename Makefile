@@ -19,7 +19,8 @@ INC_DIR = ./includes
 OBJ_DIR = ./obj
 
 SRC	= ft_printf.c printint.c printoct.c printtxt.c specs.c printint2.c \
-	printoct2.c printpercent.c printhex.c printhex2.c printunsigned.c
+	printoct2.c printpercent.c printhex.c printhex2.c printunsigned.c \
+	getbinldouble.c getbindouble.c getbinfloat.c printfloat.c zeroprecfl.c
 
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:%.c=%.o))
 LIBFT = $(LIBFT_DIR)/libft.a

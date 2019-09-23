@@ -45,7 +45,7 @@ static int		ft_intlen(long long int n)
 	return (i);
 }
 
-char			*ft_itoa(long long int n)
+char			*ft_itoa(unsigned long long n)
 {
 	int					i;
 	long long int		num;

@@ -23,7 +23,10 @@ void		getmantdouble(double d, t_float *stf, t_specs *st)
 	PREC = (PREC <= 0 ? 6 : PREC);
 	while (++i != PREC)
 		j *= 0.1;
-	d = d + j * 5;
+	if (d > 0)
+		d = d + j * 5;
+	else
+		d = d - j * 5;
 	i = -1;
 	res = ft_strnew(52);
 	res[52] = '\0';

@@ -29,9 +29,9 @@ void	printarg(t_specs *st, va_list vl)
 	(ft_tolower(SPEC) == 'u') ? printuns(st, va_arg(vl, void *), 0) : 0;
 	if (SPEC == 'f')
 	{
-		(SIZE == -1) ? printfl(st, va_arg(vl, double), i) : 0;
-		(SIZE == 0) ? printdouble(st, va_arg(vl, double), i) : 0;
-		(SIZE == 4) ? printlongdouble(st, va_arg(vl, long double), i) : 0;
+		(SIZE == -1) ? printfl(st, va_arg(vl, double)) : 0;
+		(SIZE == 0) ? printfl(st, va_arg(vl, double)) : 0;
+		(SIZE == 4) ? printfl(st, va_arg(vl, long double)) : 0;
 	}
 	(SPEC == '%') ? printpercent(st, 0) : 0;
 }
@@ -77,10 +77,10 @@ int		ft_printf(char *str, ...)
 	return (RETV);
 }
 
-int	main()
-{
-	float c = 1.125;
-	printf("| %d - symbol count ft_printf\n", ft_printf("%0100.40f", c));
-	printf("| %d - symbol count\n", printf("%0100.40f", c));
-	return 0;
-}
+// int	main()
+// {
+// 	long double c = 635364575;
+// 	printf("| %d - symbol count ft_printf\n", ft_printf("%Lf", -1.42, -1.42, -1.42l));
+// 	printf("| %d - symbol count\n", printf("{%f}{%lf}{%Lf}", -1.42, -1.42, -1.42l));
+// 	return 0;
+// }
